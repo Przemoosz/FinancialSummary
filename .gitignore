@@ -1,0 +1,19 @@
+# IDE files
+.vs
+.idea
+
+# Build files
+Source/FinancialSummary.Api/bin
+Source/FinancialSummary.Api/obj
+Source/FinancialSummary.Application/bin
+Source/FinancialSummary.Application/obj
+Source/FinancialSummary.Domain/bin
+Source/FinancialSummary.Domain/obj
+Source/FinancialSummary.Infrastructure/bin
+Source/FinancialSummary.Infrastructure/obj
+Source/FinancialSummary.Presentation/bin
+Source/FinancialSummary.Presentation/obj
+Source/FinancialSummary.Shared/bin
+Source/FinancialSummary.Shared/obj
+Source/FinancialSummary.Tests/bin
+Source/FinancialSummary.Tests/obj

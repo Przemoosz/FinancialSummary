@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>disable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+				<ManagePackageVersionCentraly>true</ManagePackageVersionCentraly>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+        <PackageReference Include="Swashbuckle.AspNetCore" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FinancialSummary.Application\FinancialSummary.Application.csproj" />
+      <ProjectReference Include="..\FinancialSummary.Domain\FinancialSummary.Domain.csproj" />
+      <ProjectReference Include="..\FinancialSummary.Infrastructure\FinancialSummary.Infrastructure.csproj" />
+      <ProjectReference Include="..\FinancialSummary.Presentation\FinancialSummary.Presentation.csproj" />
+      <ProjectReference Include="..\FinancialSummary.Shared\FinancialSummary.Shared.csproj" />
+    </ItemGroup>
+
+</Project>
