@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - '**.cs' # trigger only when new .cs file is uploaded
+      - '**.yml'
+
+jobs: # one or more, defines sequence of steps
+  Build_Windows:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4 #actions/... are official actions, this one checkouts repository
+
+    
+    - name: Setup .NET # Defines step Setup .NET
+      uses: actions/setup-dotnet@v4 # run acction actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+        
+    - name: Restore dependencies # Defines step restore dependencies from nuget
+      run: dotnet restore # run command
+      
+    - name: Build # Defines step build without additional restore (was in previous step)
+      run: dotnet build --no-restore
+      
+    - name: Test # Defines step run all tests
+      run: dotnet test --no-build --verbosity normal
+    - name: List directory
+      working-directory: ./
+      run: ls
+
+    - name: Read Version File And set
+      run: echo Get-Content -Path version.txt >> $varsion
+      
+    - name: List Git
+      run: git log --oneline
+
+    - name: Git Tag Version
+      run: git tag $env.varsion
