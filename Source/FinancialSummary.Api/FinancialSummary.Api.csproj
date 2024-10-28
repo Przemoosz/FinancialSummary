@@ -5,6 +5,7 @@
         <Nullable>disable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
     
     <PropertyGroup>
@@ -23,6 +24,12 @@
       <ProjectReference Include="..\FinancialSummary.Infrastructure\FinancialSummary.Infrastructure.csproj" />
       <ProjectReference Include="..\FinancialSummary.Presentation\FinancialSummary.Presentation.csproj" />
       <ProjectReference Include="..\FinancialSummary.Shared\FinancialSummary.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
 </Project>
