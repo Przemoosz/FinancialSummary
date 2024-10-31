@@ -17,3 +17,6 @@ Source/FinancialSummary.Shared/bin
 Source/FinancialSummary.Shared/obj
 Source/FinancialSummary.Tests/bin
 Source/FinancialSummary.Tests/obj
+
+# Data Persistent
+postgres_data
