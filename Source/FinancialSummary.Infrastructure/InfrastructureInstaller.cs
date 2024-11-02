@@ -1,5 +1,7 @@
 namespace FinancialSummary.Infrastructure;
 
+using DatabaseContext;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 public static class InfrastructureInstaller
