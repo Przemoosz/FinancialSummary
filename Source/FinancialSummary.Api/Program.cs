@@ -1,6 +1,7 @@
 namespace FinancialSummary.Api;
 
 using Domain.Entities;
+using Infrastructure.Abstract.DatabaseContext;
 using Infrastructure.DatabaseContext;
 using Microsoft.EntityFrameworkCore;
 
@@ -40,18 +41,8 @@ public class Program
 
         app.MapGet("/weatherforecast", (HttpContext httpContext, DepositContext depositContext) =>
             {
-
-                DepositEntity depositEntity = new DepositEntity()
-                {
-                    CreationDate = DateTime.Now,
-                    StartDate = DateTime.Now,
-                    FinishDate = DateTime.Now,
-                    Id = Guid.NewGuid(),
-                    CapitalizationPerYear = 1,
-                    Cash = 100,
-                    InterestRate = 1,
-                    Name = "dsds"
-                };
+                DepositEntity depositEntity = new DepositEntity("ds", 1, 1, 1, DateTime.Now, DateTime.Now);
+                
                 depositContext.Deposits.Add(depositEntity);
                 depositContext.SaveChanges();
             

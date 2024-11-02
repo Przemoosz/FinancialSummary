@@ -3,6 +3,7 @@ namespace FinancialSummary.Api;
 using Application;
 using Domain;
 using Infrastructure;
+using Infrastructure.Abstract.DatabaseContext;
 using Infrastructure.DatabaseContext;
 using Microsoft.EntityFrameworkCore;
 using Presentation;

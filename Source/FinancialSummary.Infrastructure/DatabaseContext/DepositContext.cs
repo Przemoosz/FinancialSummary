@@ -1,12 +1,12 @@
 namespace FinancialSummary.Infrastructure.DatabaseContext;
 
+using Abstract.DatabaseContext;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 public class DepositContext: DbContext, IDepositContext
 {
 	public DbSet<DepositEntity> Deposits { get; set; }
-	
 	public DepositContext() : base()
 	{
 		AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
@@ -22,8 +22,6 @@ public class DepositContext: DbContext, IDepositContext
 		modelBuilder.Entity<DepositEntity>().ToTable("deposits");
 		base.OnModelCreating(modelBuilder);
 	}
-}
-
-public interface IDepositContext
-{
+	
+	
 }
