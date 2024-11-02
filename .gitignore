@@ -20,3 +20,6 @@ Source/FinancialSummary.Tests/obj
 
 # Data Persistent
 postgres_data
+
+# Migrations
+Source/FinancialSummary.Api/Migrations
