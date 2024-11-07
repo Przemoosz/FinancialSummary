@@ -1,7 +1,7 @@
-namespace FinancialSummary.Application.Deposit.Commands.Requests;
+namespace FinancialSummary.Application.Deposit.Requests;
 
+using FinancialSummary.Application.Result;
 using MediatR;
-using Result;
 
 public sealed record CreateDepositRequest(string Name,
 	double Cash,

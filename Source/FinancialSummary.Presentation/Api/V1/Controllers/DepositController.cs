@@ -1,6 +1,7 @@
 namespace FinancialSummary.Presentation.Api.V1.Controllers;
 
-using Application.Deposit.Commands.Queries;
+using Application.Deposit.Queries;
+using Application.Deposit.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -34,7 +35,14 @@ public sealed class DepositController: ControllerBase
 	{
 		using (_logger.BeginScope(new Dictionary<string, object>() {{"OperationId", createDepositRequestBody.OperationId.GetValueOrDefault()}}))
 		{
-			
+			CreateDepositRequest createDepositRequest = new CreateDepositRequest(createDepositRequestBody.Name,
+				createDepositRequestBody.Cash,
+				createDepositRequestBody.InterestRate,
+				createDepositRequestBody.CapitalizationPerYear,
+				createDepositRequestBody.StartDate,
+				createDepositRequestBody.FinishDate);
+
+			await _mediator.Send(createDepositRequest);
 			return Ok(createDepositRequestBody);
 		}
 	}

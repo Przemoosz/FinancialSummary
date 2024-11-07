@@ -17,6 +17,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="FluentValidation" />
+      <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
       <PackageReference Include="MediatR" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     </ItemGroup>
@@ -24,7 +26,6 @@
     <ItemGroup>
       <Folder Include="Abstraction\" />
       <Folder Include="Commands\" />
-      <Folder Include="Deposit\Validators\" />
     </ItemGroup>
     
 </Project>

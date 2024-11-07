@@ -1,9 +1,9 @@
 namespace FinancialSummary.Application.Deposit.Handlers;
 
-using Commands.Queries;
 using Contracts.Repository;
 using Domain.Entities;
 using MediatR;
+using Queries;
 
 internal class GetDepositByIdHandler: IRequestHandler<GetDepositGetByIdQuery, DepositEntity> 
 {
