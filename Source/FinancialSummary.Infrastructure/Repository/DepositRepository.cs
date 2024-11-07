@@ -5,7 +5,7 @@ using Application.Contracts.Repository;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-internal class DepositRepository: IDepositRepository
+internal class DepositRepository: IRepository<DepositEntity>
 {
 	private readonly IDepositContext _depositContext;
 

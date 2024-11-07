@@ -1,8 +1,10 @@
 namespace FinancialSummary.Api;
 
+using Application;
 using Domain.Entities;
 using Infrastructure.Abstract.DatabaseContext;
 using Infrastructure.DatabaseContext;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 public class Program
@@ -13,13 +15,8 @@ public class Program
 
         builder.Services.ConfigureMiddleware();
         builder.Services.ConfigureServices();
-        Console.WriteLine(builder.Configuration.GetConnectionString("FinancialSummaryDatabase"));
-        builder.Services.AddDbContext<IDepositContext, DepositContext>(options =>
-        {
-            options.UseNpgsql(builder.Configuration.GetConnectionString("FinancialSummaryDatabase"));
-        });
-        
-        
+        builder.Services.ConfigureDatabase(builder.Configuration);
+        builder.Services.AddControllers();
         WebApplication app = builder.Build();
         
         // Configure the HTTP request pipeline.
@@ -27,13 +24,18 @@ public class Program
         {
             app.UseSwagger();
             app.UseSwaggerUI();
-            await ApplyMigrations(app);
+          //  await ApplyMigrations(app);
         }
-
+        //await ApplyMigrations(app);
         app.UseHttpsRedirection();
 
+        app.MapControllers();
+        
         app.UseAuthorization();
 
+        
+        
+        
         string[] summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"

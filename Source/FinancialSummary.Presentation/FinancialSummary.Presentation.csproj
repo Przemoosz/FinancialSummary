@@ -13,12 +13,22 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+    
+    <ItemGroup>
       <ProjectReference Include="..\FinancialSummary.Application\FinancialSummary.Application.csproj" />
       <ProjectReference Include="..\FinancialSummary.Shared\FinancialSummary.Shared.csproj" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="MediatR" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Api\V1\Requests\" />
+      <Folder Include="Api\V1\Responses\" />
     </ItemGroup>
     
 </Project>
