@@ -25,10 +25,5 @@
       <PackageReference Include="MediatR" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Api\V1\Requests\" />
-      <Folder Include="Api\V1\Responses\" />
-    </ItemGroup>
     
 </Project>

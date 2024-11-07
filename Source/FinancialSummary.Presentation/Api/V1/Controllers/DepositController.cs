@@ -1,26 +1,41 @@
 namespace FinancialSummary.Presentation.Api.V1.Controllers;
 
-using Application.Deposit.Commands.Handlers;
-using Domain.Entities;
+using Application.Deposit.Commands.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.Extensions.Logging;
+using Requests;
 
 [Route("/V1/[controller]")]
 public sealed class DepositController: ControllerBase
 {
 	private readonly IMediator _mediator;
+	private readonly ILogger<DepositController> _logger;
 
-	public DepositController(IMediator mediator)
+	public DepositController(IMediator mediator, ILogger<DepositController> logger)
 	{
 		_mediator = mediator;
+		_logger = logger;
 	}
-
-	[HttpGet]
-	public async Task<IActionResult> GetDeposit()
+	
+	[HttpGet("{Id:guid}")]
+	public async Task<IActionResult> GetDeposit([FromRoute(Name = "Id")] Guid id)
 	{
-		QueryById<DepositEntity> queryById = new QueryById<DepositEntity>(Guid.Empty);
-		var entity = await _mediator.Send(queryById);
+		GetDepositGetByIdQuery getByIdQuery = new GetDepositGetByIdQuery(id);
+		
+		var entity = await _mediator.Send(getByIdQuery);
 		
 		return Ok(entity);
+	}
+	
+	[HttpPut]
+	public async Task<IActionResult> GetDeposit([FromBody(EmptyBodyBehavior = EmptyBodyBehavior.Disallow)] CreateDepositRequestBody createDepositRequestBody)
+	{
+		using (_logger.BeginScope(new Dictionary<string, object>() {{"OperationId", createDepositRequestBody.OperationId.GetValueOrDefault()}}))
+		{
+			
+			return Ok(createDepositRequestBody);
+		}
 	}
 }

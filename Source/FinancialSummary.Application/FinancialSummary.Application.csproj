@@ -24,10 +24,7 @@
     <ItemGroup>
       <Folder Include="Abstraction\" />
       <Folder Include="Commands\" />
-      <Folder Include="Deposit\Commands\Queries\" />
-      <Folder Include="Deposit\Commands\Requests\" />
       <Folder Include="Deposit\Validators\" />
-      <Folder Include="Queries\" />
     </ItemGroup>
     
 </Project>
