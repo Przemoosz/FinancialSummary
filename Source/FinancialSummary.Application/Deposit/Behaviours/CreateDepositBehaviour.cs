@@ -19,6 +19,10 @@ public class CreateDepositBehaviour: IPipelineBehavior<CreateDepositRequest, Ope
 	public async Task<OperationResult> Handle(CreateDepositRequest request, RequestHandlerDelegate<OperationResult> next, CancellationToken cancellationToken)
 	{
 		ValidationResult validationResult = await _validator.ValidateAsync(request);
+		Console.WriteLine(request.StartDate);
+		Console.WriteLine(request.StartDate.ToLongDateString());
+		Console.WriteLine(request.StartDate.ToShortDateString());
+		
 		if (!validationResult.IsValid)
 		{
 			// logger

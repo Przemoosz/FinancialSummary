@@ -1,3 +1,3 @@
 namespace FinancialSummary.Application.Result;
 
-public sealed class OperationSuccessful;
+public abstract class OperationSuccessful;

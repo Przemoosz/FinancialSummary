@@ -4,8 +4,8 @@ using FinancialSummary.Application.Result;
 using MediatR;
 
 public sealed record CreateDepositRequest(string Name,
-	double Cash,
-	double InterestRate,
+	decimal Cash,
+	decimal InterestRate,
 	int CapitalizationPerYear,
 	DateTime StartDate,
 	DateTime FinishDate) : IRequest<OperationResult>;

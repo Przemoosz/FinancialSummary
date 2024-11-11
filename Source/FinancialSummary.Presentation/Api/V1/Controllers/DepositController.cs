@@ -1,5 +1,7 @@
 namespace FinancialSummary.Presentation.Api.V1.Controllers;
 
+using System.Net;
+using Abstraction.Factories;
 using Application.Deposit.Queries;
 using Application.Deposit.Requests;
 using Application.Result;
@@ -14,11 +16,13 @@ public sealed class DepositController: ControllerBase
 {
 	private readonly IMediator _mediator;
 	private readonly ILogger<DepositController> _logger;
+	private readonly IProblemDetailsFactory _problemDetailsFactory;
 
-	public DepositController(IMediator mediator, ILogger<DepositController> logger)
+	public DepositController(IMediator mediator, ILogger<DepositController> logger, IProblemDetailsFactory problemDetailsFactory)
 	{
 		_mediator = mediator;
 		_logger = logger;
+		_problemDetailsFactory = problemDetailsFactory;
 	}
 	
 	[HttpGet("{Id:guid}")]
@@ -36,7 +40,6 @@ public sealed class DepositController: ControllerBase
 	{
 		using (_logger.BeginScope(new Dictionary<string, object>() {{"OperationId", createDepositRequestBody.OperationId.GetValueOrDefault()}}))
 		{
-			_logger.LogInformation("aaaaaaaaaaaa");
 			CreateDepositRequest createDepositRequest = new CreateDepositRequest(createDepositRequestBody.Name,
 				createDepositRequestBody.Cash,
 				createDepositRequestBody.InterestRate,
@@ -45,7 +48,14 @@ public sealed class DepositController: ControllerBase
 				createDepositRequestBody.FinishDate);
 
 			OperationResult result = await _mediator.Send(createDepositRequest);
-			return Ok(result.AsT1);
+
+			return result.Match<IActionResult>(failed =>
+				{
+					ProblemDetails problemDetails =
+						_problemDetailsFactory.Create(failed, createDepositRequestBody.OperationId);
+					return StatusCode((int)failed.StatusCode, problemDetails);
+				},
+				success => StatusCode((int) HttpStatusCode.Created, success));
 		}
 	}
 }

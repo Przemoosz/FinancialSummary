@@ -1,6 +1,7 @@
 namespace FinancialSummary.Presentation.Factories;
 
 using Application.Result;
+using Builders;
 using FinancialSummary.Presentation.Abstraction.Factories;
 using Microsoft.AspNetCore.Mvc;
 

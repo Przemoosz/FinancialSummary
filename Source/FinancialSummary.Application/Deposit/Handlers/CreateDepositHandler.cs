@@ -1,6 +1,7 @@
 namespace FinancialSummary.Application.Deposit.Handlers;
 
 using Contracts.Repository;
+using Domain.Abstract.Factories;
 using Domain.Entities;
 using FluentValidation;
 using MediatR;
@@ -10,22 +11,22 @@ using Result;
 internal sealed class CreateDepositHandler: IRequestHandler<CreateDepositRequest, OperationResult>
 {
 	private readonly IRepository<DepositEntity> _repository;
-	private readonly IValidator<CreateDepositRequest> _validator;
+	private readonly IDepositEntityFactory _depositEntityFactory;
 
-	public CreateDepositHandler(IRepository<DepositEntity> repository, IValidator<CreateDepositRequest> validator)
+	public CreateDepositHandler(IRepository<DepositEntity> repository, IDepositEntityFactory depositEntityFactory)
 	{
 		_repository = repository;
-		_validator = validator;
+		_depositEntityFactory = depositEntityFactory;
 	}
 	
 	public async Task<OperationResult> Handle(CreateDepositRequest request, CancellationToken cancellationToken)
 	{
-		// Validate
-		
 		// Create Entity
+		DepositEntity depositEntity = _depositEntityFactory.Create(request.Name, request.Cash, request.InterestRate,
+			request.CapitalizationPerYear, request.StartDate, request.FinishDate); 
 		
 		// Add Entity
-		
-		throw new NotImplementedException();
+		await _repository.AddAsync(depositEntity, cancellationToken);
+		return new CreateOperationSuccessful(depositEntity.Id);
 	}
 }

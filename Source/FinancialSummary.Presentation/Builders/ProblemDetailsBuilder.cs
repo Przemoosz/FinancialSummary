@@ -1,4 +1,4 @@
-namespace FinancialSummary.Presentation.Factories;
+namespace FinancialSummary.Presentation.Builders;
 
 using System.Net;
 using FinancialSummary.Presentation.Abstraction.Builders;
