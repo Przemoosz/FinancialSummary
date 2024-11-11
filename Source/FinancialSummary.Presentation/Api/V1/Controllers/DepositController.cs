@@ -2,6 +2,7 @@ namespace FinancialSummary.Presentation.Api.V1.Controllers;
 
 using Application.Deposit.Queries;
 using Application.Deposit.Requests;
+using Application.Result;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -35,6 +36,7 @@ public sealed class DepositController: ControllerBase
 	{
 		using (_logger.BeginScope(new Dictionary<string, object>() {{"OperationId", createDepositRequestBody.OperationId.GetValueOrDefault()}}))
 		{
+			_logger.LogInformation("aaaaaaaaaaaa");
 			CreateDepositRequest createDepositRequest = new CreateDepositRequest(createDepositRequestBody.Name,
 				createDepositRequestBody.Cash,
 				createDepositRequestBody.InterestRate,
@@ -42,8 +44,8 @@ public sealed class DepositController: ControllerBase
 				createDepositRequestBody.StartDate,
 				createDepositRequestBody.FinishDate);
 
-			await _mediator.Send(createDepositRequest);
-			return Ok(createDepositRequestBody);
+			OperationResult result = await _mediator.Send(createDepositRequest);
+			return Ok(result.AsT1);
 		}
 	}
 }

@@ -21,6 +21,7 @@
       <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
       <PackageReference Include="MediatR" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+      <PackageReference Include="OneOf" />
     </ItemGroup>
 
     <ItemGroup>

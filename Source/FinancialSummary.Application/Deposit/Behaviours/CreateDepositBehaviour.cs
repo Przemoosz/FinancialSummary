@@ -1,5 +1,6 @@
 namespace FinancialSummary.Application.Deposit.Behaviours;
 
+using System.Net;
 using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
@@ -18,7 +19,14 @@ public class CreateDepositBehaviour: IPipelineBehavior<CreateDepositRequest, Ope
 	public async Task<OperationResult> Handle(CreateDepositRequest request, RequestHandlerDelegate<OperationResult> next, CancellationToken cancellationToken)
 	{
 		ValidationResult validationResult = await _validator.ValidateAsync(request);
-		Console.WriteLine(a.ToString());
-		throw new NotImplementedException();
+		if (!validationResult.IsValid)
+		{
+			// logger
+			return new OperationFailed("Request Validation Error", validationResult.ToString(" "), HttpStatusCode.BadRequest);
+		}
+
+		var result = await next();
+
+		return result;
 	}
 }

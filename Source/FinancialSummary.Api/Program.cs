@@ -18,7 +18,7 @@ public class Program
         builder.Services.ConfigureDatabase(builder.Configuration);
         builder.Services.AddControllers();
         WebApplication app = builder.Build();
-        
+
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
