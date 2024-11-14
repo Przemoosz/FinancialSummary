@@ -3,7 +3,7 @@ namespace FinancialSummary.Application.Deposit.Validators;
 using FluentValidation;
 using Requests;
 
-public class DepositCreateRequestValidator: AbstractValidator<CreateDepositRequest>
+internal class DepositCreateRequestValidator: AbstractValidator<CreateDepositRequest>
 {
 	public DepositCreateRequestValidator()
 	{

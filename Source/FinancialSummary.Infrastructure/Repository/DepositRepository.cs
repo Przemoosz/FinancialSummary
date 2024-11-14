@@ -16,7 +16,12 @@ internal class DepositRepository: IRepository<DepositEntity>
 	
 	public Task<DepositEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken)
 	{
-		return _depositContext.Deposits.FirstAsync(s => s.Id.Equals(id), cancellationToken);
+		return _depositContext.Deposits.FirstOrDefaultAsync(s => s.Id.Equals(id), cancellationToken);
+	}
+
+	public Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken)
+	{
+		return _depositContext.Deposits.AnyAsync(x => x.Id.Equals(id), cancellationToken);
 	}
 
 	public IAsyncEnumerable<DepositEntity> GetAll(CancellationToken cancellationToken)

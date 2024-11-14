@@ -38,7 +38,7 @@ public sealed class DepositController: ControllerBase
 	[HttpDelete("{Id:guid}")]
 	public async Task<IActionResult> DeleteDeposit([FromRoute(Name = "Id")] Guid id)
 	{
-		GetDepositGetByIdQuery getByIdQuery = new GetDepositGetByIdQuery(id);
+		DeleteDepositRequest getByIdQuery = new DeleteDepositRequest(id);
 		
 		var entity = await _mediator.Send(getByIdQuery);
 		

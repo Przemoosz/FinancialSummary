@@ -8,12 +8,12 @@ using Microsoft.Extensions.Logging;
 using Requests;
 using Result;
 
-public class CreateDepositBehaviour: IPipelineBehavior<CreateDepositRequest, OperationResult>
+public class CreateDepositBehavior: IPipelineBehavior<CreateDepositRequest, OperationResult>
 {
 	private readonly IValidator<CreateDepositRequest> _validator;
-	private readonly ILogger<CreateDepositBehaviour> _logger;
+	private readonly ILogger<CreateDepositBehavior> _logger;
 
-	public CreateDepositBehaviour(IValidator<CreateDepositRequest> validator, ILogger<CreateDepositBehaviour> logger)
+	public CreateDepositBehavior(IValidator<CreateDepositRequest> validator, ILogger<CreateDepositBehavior> logger)
 	{
 		_validator = validator;
 		_logger = logger;
