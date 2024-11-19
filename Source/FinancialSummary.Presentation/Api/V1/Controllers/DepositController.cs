@@ -5,6 +5,7 @@ using Abstraction.Factories;
 using Application.Deposit.Queries;
 using Application.Deposit.Requests;
 using Application.Result;
+using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -30,7 +31,7 @@ public sealed class DepositController: ControllerBase
 	{
 		GetDepositGetByIdQuery getByIdQuery = new GetDepositGetByIdQuery(id);
 		
-		var entity = await _mediator.Send(getByIdQuery);
+		DepositEntity entity = await _mediator.Send(getByIdQuery);
 		
 		return Ok(entity);
 	}
@@ -40,9 +41,15 @@ public sealed class DepositController: ControllerBase
 	{
 		DeleteDepositRequest getByIdQuery = new DeleteDepositRequest(id);
 		
-		var entity = await _mediator.Send(getByIdQuery);
+		var result = await _mediator.Send(getByIdQuery);
 		
-		return Ok(entity);
+		return result.Match<IActionResult>(failed =>
+			{
+				ProblemDetails problemDetails =
+					_problemDetailsFactory.Create(failed, Guid.NewGuid());
+				return StatusCode((int)failed.StatusCode, problemDetails);
+			},
+			_ => Ok());
 	}
 	
 	[HttpPut]
@@ -65,7 +72,7 @@ public sealed class DepositController: ControllerBase
 						_problemDetailsFactory.Create(failed, createDepositRequestBody.OperationId);
 					return StatusCode((int)failed.StatusCode, problemDetails);
 				},
-				success => StatusCode((int) HttpStatusCode.Created, success));
+				success => StatusCode((int) HttpStatusCode.Created, success.Context));
 		}
 	}
 }

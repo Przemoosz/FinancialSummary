@@ -3,7 +3,6 @@ namespace FinancialSummary.Application.Deposit.Handlers;
 using Contracts.Repository;
 using Domain.Abstract.Factories;
 using Domain.Entities;
-using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Requests;
@@ -32,6 +31,6 @@ internal sealed class CreateDepositHandler: IRequestHandler<CreateDepositRequest
 		// Add Entity
 		await _repository.AddAsync(depositEntity, cancellationToken);
 		_logger.LogInformation($"Created entity {depositEntity.Id}");
-		return new CreateOperationSuccessful(depositEntity.Id);
+		return new OperationSuccessful(new {EntityId = depositEntity.Id});
 	}
 }

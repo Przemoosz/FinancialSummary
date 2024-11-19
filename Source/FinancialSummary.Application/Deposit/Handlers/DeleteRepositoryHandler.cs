@@ -24,6 +24,6 @@ public class DeleteRepositoryHandler: IRequestHandler<DeleteDepositRequest, Oper
 		
 		_logger.LogInformation($"Deposit with id {request.Id} deleted.");
 
-		return new DeleteOperationSuccessful(request.Id);
+		return new OperationSuccessful(request.Id);
 	}
 }
