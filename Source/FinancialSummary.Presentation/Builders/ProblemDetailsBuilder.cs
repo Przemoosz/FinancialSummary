@@ -1,9 +1,11 @@
 namespace FinancialSummary.Presentation.Builders;
 
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using FinancialSummary.Presentation.Abstraction.Builders;
 using Microsoft.AspNetCore.Mvc;
 
+[ExcludeFromCodeCoverage]
 internal sealed class ProblemDetailsBuilder: IProblemDetailsBuilderBase, 
 	IProblemDetailsBuilderWithTitle, 
 	IProblemDetailsBuilderWithDetails,

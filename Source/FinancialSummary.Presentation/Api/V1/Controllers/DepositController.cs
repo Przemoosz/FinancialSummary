@@ -1,5 +1,6 @@
 namespace FinancialSummary.Presentation.Api.V1.Controllers;
 
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using Abstraction.Factories;
 using Application.Deposit.Queries;
@@ -12,6 +13,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Logging;
 using Requests;
 
+[ExcludeFromCodeCoverage]
 [Route("/V1/[controller]")]
 public sealed class DepositController: ControllerBase
 {
