@@ -10,8 +10,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Any" />
         <PackageReference Include="coverlet.collector" />
+        <PackageReference Include="FluentAssertions" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" />
+        <PackageReference Include="NSubstitute" />
         <PackageReference Include="NUnit" />
         <PackageReference Include="NUnit.Analyzers" />
         <PackageReference Include="NUnit3TestAdapter" />
@@ -19,6 +22,22 @@
 
     <ItemGroup>
         <Using Include="NUnit.Framework"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Api\" />
+      <Folder Include="Application\" />
+      <Folder Include="Domain\" />
+      <Folder Include="Infrastructure\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FinancialSummary.Api\FinancialSummary.Api.csproj" />
+      <ProjectReference Include="..\FinancialSummary.Application\FinancialSummary.Application.csproj" />
+      <ProjectReference Include="..\FinancialSummary.Domain\FinancialSummary.Domain.csproj" />
+      <ProjectReference Include="..\FinancialSummary.Infrastructure\FinancialSummary.Infrastructure.csproj" />
+      <ProjectReference Include="..\FinancialSummary.Presentation\FinancialSummary.Presentation.csproj" />
+      <ProjectReference Include="..\FinancialSummary.Shared\FinancialSummary.Shared.csproj" />
     </ItemGroup>
 
 </Project>

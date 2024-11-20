@@ -1,9 +1,11 @@
 namespace FinancialSummary.Infrastructure.DatabaseContext;
 
+using System.Diagnostics.CodeAnalysis;
 using Abstract.DatabaseContext;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
+[ExcludeFromCodeCoverage]
 public class DepositContext: DbContext, IDepositContext
 {
 	public DbSet<DepositEntity> Deposits { get; set; }

@@ -1,8 +1,9 @@
 namespace FinancialSummary.Domain.Entities;
 
 using System.ComponentModel.DataAnnotations;
+using Abstract.Entities;
 
-public sealed record DepositEntity
+public sealed record DepositEntity: IEntity
 {
 	public Guid Id { get; init; }
 	
@@ -20,7 +21,7 @@ public sealed record DepositEntity
 	public int CapitalizationPerYear { get; init; }
 	
 	[Required]
-	public DateTime CreationDate { get; init; }
+	public DateTime ModifyDate { get; init; }
 	
 	[Required]
 	public DateTime StartDate { get; init; }
@@ -35,7 +36,7 @@ public sealed record DepositEntity
 		Cash = cash;
 		InterestRate = interestRate;
 		CapitalizationPerYear = capitalizationPerYear;
-		CreationDate = DateTime.UtcNow;
+		ModifyDate = DateTime.UtcNow;
 		StartDate = startDate;
 		FinishDate = finishDate;
 	}

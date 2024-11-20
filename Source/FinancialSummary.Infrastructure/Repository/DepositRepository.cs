@@ -5,7 +5,7 @@ using Application.Contracts.Repository;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-internal class DepositRepository: IDepositRepository
+internal class DepositRepository: IRepository<DepositEntity>
 {
 	private readonly IDepositContext _depositContext;
 
@@ -16,7 +16,12 @@ internal class DepositRepository: IDepositRepository
 	
 	public Task<DepositEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken)
 	{
-		return _depositContext.Deposits.FirstAsync(s => s.Id.Equals(id), cancellationToken);
+		return _depositContext.Deposits.FirstOrDefaultAsync(s => s.Id.Equals(id), cancellationToken);
+	}
+
+	public Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken)
+	{
+		return _depositContext.Deposits.AnyAsync(x => x.Id.Equals(id), cancellationToken);
 	}
 
 	public IAsyncEnumerable<DepositEntity> GetAll(CancellationToken cancellationToken)

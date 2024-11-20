@@ -1,0 +1,10 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=808a9dfe_002Ddf37_002D42d1_002D9305_002Deccf7a61cb4c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ToShortDate_ShouldReturnShortDate" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7DE6CBA7-D073-47D9-9FF1-4002D331F3EE::net8.0::FinancialSummary.Tests.Shared.Extensions.DateTimeExtensionsTests.ToShortDate_ShouldReturnShortDate&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7DE6CBA7-D073-47D9-9FF1-4002D331F3EE::net8.0::FinancialSummary.Tests.Presentation.Factories.ProblemDetailsFactoryTests.Create_ForBadRequest_ShouldReturnProblemDetails&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7DE6CBA7-D073-47D9-9FF1-4002D331F3EE::net8.0::FinancialSummary.Tests.Presentation.Factories.ProblemDetailsFactoryTests.Create_WhenNoOperationId_ShouldReturnProblemDetails_WithEmptyGuid&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7DE6CBA7-D073-47D9-9FF1-4002D331F3EE::net8.0::FinancialSummary.Tests.Presentation.Factories.ProblemDetailsFactoryTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7DE6CBA7-D073-47D9-9FF1-4002D331F3EE::net8.0::DepositCreateRequestValidatorTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
