@@ -8,13 +8,14 @@ using Application.Deposit.Requests;
 using Application.Result;
 using Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Logging;
 using Requests;
 
 [ExcludeFromCodeCoverage]
-[Route("/V1/[controller]")]
+[Route("/[controller]/V1")]
 public sealed class DepositController: ControllerBase
 {
 	private readonly IMediator _mediator;
@@ -29,16 +30,29 @@ public sealed class DepositController: ControllerBase
 	}
 	
 	[HttpGet("{Id:guid}")]
+	[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DepositEntity))]
+	[ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+	[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
 	public async Task<IActionResult> GetDeposit([FromRoute(Name = "Id")] Guid id)
 	{
+		Guid operationId = Guid.NewGuid();
 		GetDepositGetByIdQuery getByIdQuery = new GetDepositGetByIdQuery(id);
 		
-		DepositEntity entity = await _mediator.Send(getByIdQuery);
+		var result = await _mediator.Send(getByIdQuery);
 		
-		return Ok(entity);
-	}
+		return result.Match<IActionResult>(failed =>
+			{
+				ProblemDetails problemDetails =
+					_problemDetailsFactory.Create(failed, operationId);
+				return StatusCode((int)failed.StatusCode, problemDetails);
+			},
+			success => StatusCode((int) HttpStatusCode.Created, success.Context));
+	}	
 	
 	[HttpDelete("{Id:guid}")]
+	[ProducesResponseType(StatusCodes.Status200OK)]
+	[ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetails))]
+	[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
 	public async Task<IActionResult> DeleteDeposit([FromRoute(Name = "Id")] Guid id)
 	{
 		DeleteDepositRequest getByIdQuery = new DeleteDepositRequest(id);
@@ -54,8 +68,11 @@ public sealed class DepositController: ControllerBase
 			_ => Ok());
 	}
 	
-	[HttpPut]
-	public async Task<IActionResult> GetDeposit([FromBody(EmptyBodyBehavior = EmptyBodyBehavior.Disallow)] CreateDepositRequestBody createDepositRequestBody)
+	[HttpPut("{Id:guid}")]
+	[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DepositEntity))]
+	[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+	[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+	public async Task<IActionResult> AddDeposit([FromBody(EmptyBodyBehavior = EmptyBodyBehavior.Disallow)] CreateDepositRequestBody createDepositRequestBody)
 	{
 		using (_logger.BeginScope(new Dictionary<string, object>() {{"OperationId", createDepositRequestBody.OperationId.GetValueOrDefault()}}))
 		{

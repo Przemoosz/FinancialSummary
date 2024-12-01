@@ -1,11 +1,13 @@
 namespace FinancialSummary.Application.Deposit.Validators;
 
+using Contracts.Repository;
+using Domain.Entities;
 using FluentValidation;
 using Requests;
 
-internal class DepositCreateRequestValidator: AbstractValidator<CreateDepositRequest>
+internal class DepositUpdateRequestValidator: AbstractValidator<UpdateDepositRequest>
 {
-	public DepositCreateRequestValidator()
+	public DepositUpdateRequestValidator()
 	{
 		RuleFor(x => x.Cash)
 			.GreaterThan(0)

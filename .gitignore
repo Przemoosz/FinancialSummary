@@ -1,6 +1,7 @@
 # IDE files
 .vs
 .idea
+FinancialSummary.sln.DotSettings.user
 
 # Build files
 Source/FinancialSummary.Api/bin

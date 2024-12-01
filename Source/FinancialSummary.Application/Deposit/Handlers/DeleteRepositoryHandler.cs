@@ -1,5 +1,6 @@
 namespace FinancialSummary.Application.Deposit.Handlers;
 
+using System.Net;
 using Contracts.Repository;
 using Domain.Entities;
 using MediatR;
@@ -20,7 +21,16 @@ public class DeleteRepositoryHandler: IRequestHandler<DeleteDepositRequest, Oper
 	
 	public async Task<OperationResult> Handle(DeleteDepositRequest request, CancellationToken cancellationToken)
 	{
-		await _repository.DeleteAsync(request.Id, cancellationToken);
+		try
+		{
+			await _repository.DeleteAsync(request.Id, cancellationToken);
+		}
+		catch (Exception e)
+		{
+			_logger.LogError(e, $"Failed to delete entity {request.Id}");
+			return new OperationFailed("Error when deleting deposit entity", e.Message,
+				HttpStatusCode.InternalServerError);
+		}
 		
 		_logger.LogInformation($"Deposit with id {request.Id} deleted.");
 

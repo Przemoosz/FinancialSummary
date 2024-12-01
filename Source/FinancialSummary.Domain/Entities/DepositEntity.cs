@@ -1,8 +1,10 @@
 namespace FinancialSummary.Domain.Entities;
 
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using Abstract.Entities;
 
+[ExcludeFromCodeCoverage]
 public sealed record DepositEntity: IEntity
 {
 	public Guid Id { get; init; }

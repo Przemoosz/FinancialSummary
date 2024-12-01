@@ -1,16 +1,16 @@
 namespace FinancialSummary.Application;
 
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using Contracts.Repository;
 using Deposit.Behaviours;
 using Deposit.Requests;
 using Deposit.Validators;
-using Domain.Entities;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Result;
 
+[ExcludeFromCodeCoverage]
 public static class ApplicationInstaller
 {
     public static void InstallApplication(this IServiceCollection serviceCollection)

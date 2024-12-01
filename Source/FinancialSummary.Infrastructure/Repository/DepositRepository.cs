@@ -1,10 +1,12 @@
 namespace FinancialSummary.Infrastructure.Repository;
 
+using System.Diagnostics.CodeAnalysis;
 using Abstract.DatabaseContext;
 using Application.Contracts.Repository;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
+[ExcludeFromCodeCoverage]
 internal class DepositRepository: IRepository<DepositEntity>
 {
 	private readonly IDepositContext _depositContext;

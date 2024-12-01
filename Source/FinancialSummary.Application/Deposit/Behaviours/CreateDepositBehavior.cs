@@ -21,7 +21,7 @@ public class CreateDepositBehavior: IPipelineBehavior<CreateDepositRequest, Oper
 	
 	public async Task<OperationResult> Handle(CreateDepositRequest request, RequestHandlerDelegate<OperationResult> next, CancellationToken cancellationToken)
 	{
-		ValidationResult validationResult = await _validator.ValidateAsync(request);
+		ValidationResult validationResult = await _validator.ValidateAsync(request, cancellationToken);
 		
 		if (!validationResult.IsValid)
 		{
