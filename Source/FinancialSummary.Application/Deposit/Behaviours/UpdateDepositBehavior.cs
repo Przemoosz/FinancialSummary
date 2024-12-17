@@ -9,14 +9,14 @@ using Microsoft.Extensions.Logging;
 using Requests;
 using Result;
 
-public class UpdateDepositBehaviour: IPipelineBehavior<UpdateDepositRequest, OperationResult>
+public class UpdateDepositBehavior: IPipelineBehavior<UpdateDepositRequest, OperationResult>
 {
 	private readonly IRepository<DepositEntity> _repository;
 	private readonly IValidator<UpdateDepositRequest> _validator;
-	private readonly ILogger<UpdateDepositBehaviour> _logger;
+	private readonly ILogger<UpdateDepositBehavior> _logger;
 
-	public UpdateDepositBehaviour(IRepository<DepositEntity> repository, IValidator<UpdateDepositRequest> validator,
-		ILogger<UpdateDepositBehaviour> logger)
+	public UpdateDepositBehavior(IRepository<DepositEntity> repository, IValidator<UpdateDepositRequest> validator,
+		ILogger<UpdateDepositBehavior> logger)
 	{
 		_repository = repository;
 		_validator = validator;

@@ -7,8 +7,8 @@ using Result;
 [ExcludeFromCodeCoverage]
 public sealed record UpdateDepositRequest(Guid Id, 
 	string Name,
-	decimal Cash,
-	decimal InterestRate,
-	int CapitalizationPerYear,
-	DateTime StartDate,
-	DateTime FinishDate) : IRequest<OperationResult>;
+	decimal? Cash,
+	decimal? InterestRate,
+	int? CapitalizationPerYear,
+	DateTime? StartDate,
+	DateTime? FinishDate) : IRequest<OperationResult>;

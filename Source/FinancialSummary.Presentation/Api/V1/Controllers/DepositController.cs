@@ -94,4 +94,31 @@ public sealed class DepositController: ControllerBase
 				success => StatusCode((int) HttpStatusCode.Created, success.Context));
 		}
 	}
+	
+	[HttpPatch("{Id:guid}")]
+	[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DepositEntity))]
+	[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+	[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+	public async Task<IActionResult> UpdateDeposit([FromBody(EmptyBodyBehavior = EmptyBodyBehavior.Disallow)] UpdateDepositRequestBody updateDepositRequestBody, [FromRoute(Name = "Id")] Guid id)
+	{
+		using (_logger.BeginScope(new Dictionary<string, object>() {{"OperationId", updateDepositRequestBody.OperationId.GetValueOrDefault()}}))
+		{
+			UpdateDepositRequest createDepositRequest = new UpdateDepositRequest(id,updateDepositRequestBody.Name,
+				updateDepositRequestBody.Cash,
+				updateDepositRequestBody.InterestRate,
+				updateDepositRequestBody.CapitalizationPerYear,
+				updateDepositRequestBody.StartDate,
+				updateDepositRequestBody.FinishDate);
+
+			OperationResult result = await _mediator.Send(createDepositRequest);
+
+			return result.Match<IActionResult>(failed =>
+				{
+					ProblemDetails problemDetails =
+						_problemDetailsFactory.Create(failed, updateDepositRequestBody.OperationId);
+					return StatusCode((int)failed.StatusCode, problemDetails);
+				},
+				success => StatusCode((int) HttpStatusCode.Created, success.Context));
+		}
+	}
 }
