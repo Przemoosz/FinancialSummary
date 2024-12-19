@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Deposit.Behaviours;
 using Deposit.Requests;
+using Deposit.Services;
 using Deposit.Validators;
 using FluentValidation;
 using MediatR;
@@ -24,5 +25,6 @@ public static class ApplicationInstaller
         serviceCollection.AddScoped<IPipelineBehavior<CreateDepositRequest, OperationResult>, CreateDepositBehavior>();
         serviceCollection.AddScoped<IPipelineBehavior<DeleteDepositRequest, OperationResult>, DeleteDepositBehavior>();
         serviceCollection.AddScoped<IPipelineBehavior<UpdateDepositRequest, OperationResult>, UpdateDepositBehavior>();
+        serviceCollection.AddScoped<IDepositUpdateService, DepositUpdateService>();
     }
 }

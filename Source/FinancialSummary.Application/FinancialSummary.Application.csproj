@@ -27,7 +27,6 @@
     <ItemGroup>
       <Folder Include="Abstraction\" />
       <Folder Include="Commands\" />
-      <Folder Include="Deposit\Services\" />
     </ItemGroup>
 
     <ItemGroup>
