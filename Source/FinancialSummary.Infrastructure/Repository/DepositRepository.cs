@@ -1,9 +1,17 @@
 namespace FinancialSummary.Infrastructure.Repository;
 
 using System.Diagnostics.CodeAnalysis;
+using System.Linq.Expressions;
+using System.Reflection;
 using Abstract.DatabaseContext;
 using Application.Contracts.Repository;
+using Application.Deposit.Requests;
+using Domain.Abstract.Entities;
 using Domain.Entities;
+using Domain.Entities.Deposit;
+using Extensions;
+using Extensions.Expressions;
+using FluentValidation.Internal;
 using Microsoft.EntityFrameworkCore;
 
 [ExcludeFromCodeCoverage]
@@ -41,7 +49,18 @@ internal class DepositRepository: IRepository<DepositEntity>
 	{
 		return _depositContext.Deposits.Where(s => s.Id.Equals(id)).ExecuteDeleteAsync(cancellationToken);
 	}
-
+	
+	public async Task UpdateEntityPropertyAsync<TProperty>(Guid id, Expression<Func<IEntity, TProperty>> expression, TProperty value, CancellationToken cancellationToken)
+	{
+		DepositEntity depositEntity = await GetByIdAsync(id, cancellationToken);
+		
+		depositEntity.UpdateProperty(expression, value);
+		
+		depositEntity.ModifyDate = DateTime.UtcNow;
+		
+		await _depositContext.SaveChangesAsync(cancellationToken);
+	}
+	
 	public ValueTask DisposeAsync()
 	{
 		return _depositContext.DisposeAsync();

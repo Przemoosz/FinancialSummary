@@ -9,6 +9,7 @@ using FinancialSummary.Application.Deposit.Requests;
 using FinancialSummary.Domain.Entities;
 using FinancialSummary.Application.Contracts.Repository;
 using FinancialSummary.Application.Result;
+using FinancialSummary.Domain.Entities.Deposit;
 using FluentAssertions;
 using MediatR;
 using Microsoft.Extensions.Logging;

@@ -11,6 +11,7 @@ using FinancialSummary.Application.Contracts.Repository;
 using FinancialSummary.Application.Result;
 using FinancialSummary.Domain.Abstract.Factories;
 using FinancialSummary.Domain.Entities;
+using FinancialSummary.Domain.Entities.Deposit;
 using FluentAssertions;
 using MediatR;
 using Microsoft.Extensions.Logging;

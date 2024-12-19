@@ -9,6 +9,4 @@ public sealed record UpdateDepositRequest(Guid Id,
 	string Name,
 	decimal? Cash,
 	decimal? InterestRate,
-	int? CapitalizationPerYear,
-	DateTime? StartDate,
-	DateTime? FinishDate) : IRequest<OperationResult>;
+	int? CapitalizationPerYear) : IRequest<OperationResult>;

@@ -12,4 +12,5 @@ public interface IRepository<TEntity> where TEntity: IEntity
 	Task AddAsync(TEntity depositEntity, CancellationToken cancellationToken);
 	
 	Task DeleteAsync(Guid id, CancellationToken cancellationToken);
+
 }

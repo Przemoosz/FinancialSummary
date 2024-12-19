@@ -1,8 +1,8 @@
-namespace FinancialSummary.Domain.Entities;
+namespace FinancialSummary.Domain.Entities.Deposit;
 
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
-using Abstract.Entities;
+using FinancialSummary.Domain.Abstract.Entities;
 
 [ExcludeFromCodeCoverage]
 public sealed record DepositEntity: IEntity
@@ -17,19 +17,19 @@ public sealed record DepositEntity: IEntity
 	public decimal Cash { get; init; }
 	
 	[Required]
-	public decimal InterestRate { get; init; }
+	public decimal InterestRate { get; set; }
 	
 	[Required]
-	public int CapitalizationPerYear { get; init; }
+	public int CapitalizationPerYear { get; set; }
 	
 	[Required]
-	public DateTime ModifyDate { get; init; }
+	public DateTime ModifyDate { get; set; }
 	
 	[Required]
-	public DateTime StartDate { get; init; }
+	public DateTime StartDate { get; set; }
 	
 	[Required]
-	public DateTime FinishDate { get; init; }
+	public DateTime FinishDate { get; set; }
 	
 	public DepositEntity(string name, decimal cash, decimal interestRate, int capitalizationPerYear, DateTime startDate, DateTime finishDate)
 	{

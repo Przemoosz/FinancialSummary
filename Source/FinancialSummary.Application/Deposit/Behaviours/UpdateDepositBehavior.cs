@@ -1,37 +1,34 @@
 namespace FinancialSummary.Application.Deposit.Behaviours;
 
 using System.Net;
-using Contracts.Repository;
-using Domain.Entities;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Requests;
 using Result;
+using Shared.Extensions;
 
 public class UpdateDepositBehavior: IPipelineBehavior<UpdateDepositRequest, OperationResult>
 {
-	private readonly IRepository<DepositEntity> _repository;
 	private readonly IValidator<UpdateDepositRequest> _validator;
 	private readonly ILogger<UpdateDepositBehavior> _logger;
 
-	public UpdateDepositBehavior(IRepository<DepositEntity> repository, IValidator<UpdateDepositRequest> validator,
+	public UpdateDepositBehavior(IValidator<UpdateDepositRequest> validator,
 		ILogger<UpdateDepositBehavior> logger)
 	{
-		_repository = repository;
 		_validator = validator;
 		_logger = logger;
 	}
 	
 	public async Task<OperationResult> Handle(UpdateDepositRequest request, RequestHandlerDelegate<OperationResult> next, CancellationToken cancellationToken)
 	{
-		if (!await _repository.ExistsAsync(request.Id, cancellationToken))
+		var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+		if (validationResult.ContainsErrorCode(ValidationErrorCodes.EntityNotFound))
 		{
 			_logger.LogWarning($"Deposit {request.Id} does not exists");
 			return new OperationFailed("Deposit does not exists", $"Deposit {request.Id} does not exists.", HttpStatusCode.NotFound);
 		}
 
-		var validationResult = await _validator.ValidateAsync(request, cancellationToken);
 		if (!validationResult.IsValid)
 		{
 			_logger.LogWarning($"Request Validation Error. {validationResult.ToString(" ")}");

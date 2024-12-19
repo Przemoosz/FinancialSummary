@@ -7,6 +7,7 @@ using Application.Deposit.Queries;
 using Application.Deposit.Requests;
 using Application.Result;
 using Domain.Entities;
+using Domain.Entities.Deposit;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -68,7 +69,7 @@ public sealed class DepositController: ControllerBase
 			_ => Ok());
 	}
 	
-	[HttpPut("{Id:guid}")]
+	[HttpPut]
 	[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DepositEntity))]
 	[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
 	[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
@@ -103,12 +104,12 @@ public sealed class DepositController: ControllerBase
 	{
 		using (_logger.BeginScope(new Dictionary<string, object>() {{"OperationId", updateDepositRequestBody.OperationId.GetValueOrDefault()}}))
 		{
-			UpdateDepositRequest createDepositRequest = new UpdateDepositRequest(id,updateDepositRequestBody.Name,
+			UpdateDepositRequest createDepositRequest = new UpdateDepositRequest(
+				id,
+				updateDepositRequestBody.Name,
 				updateDepositRequestBody.Cash,
 				updateDepositRequestBody.InterestRate,
-				updateDepositRequestBody.CapitalizationPerYear,
-				updateDepositRequestBody.StartDate,
-				updateDepositRequestBody.FinishDate);
+				updateDepositRequestBody.CapitalizationPerYear);
 
 			OperationResult result = await _mediator.Send(createDepositRequest);
 

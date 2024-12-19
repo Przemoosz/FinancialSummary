@@ -3,6 +3,7 @@ namespace FinancialSummary.Application.Deposit.Handlers;
 using System.Net;
 using Contracts.Repository;
 using Domain.Entities;
+using Domain.Entities.Deposit;
 using MediatR;
 using Queries;
 using Result;

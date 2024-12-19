@@ -8,6 +8,4 @@ public sealed record UpdateDepositRequestBody(
 	string Name,
 	decimal? Cash,
 	decimal? InterestRate,
-	int? CapitalizationPerYear,
-	DateTime? StartDate,
-	DateTime? FinishDate);
+	int? CapitalizationPerYear);

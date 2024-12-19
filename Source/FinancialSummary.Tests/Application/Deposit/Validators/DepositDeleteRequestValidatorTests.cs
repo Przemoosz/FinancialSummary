@@ -4,6 +4,7 @@ using FinancialSummary.Application.Contracts.Repository;
 using FinancialSummary.Application.Deposit.Requests;
 using FinancialSummary.Application.Deposit.Validators;
 using FinancialSummary.Domain.Entities;
+using FinancialSummary.Domain.Entities.Deposit;
 using FluentValidation.TestHelper;
 using NSubstitute;
 

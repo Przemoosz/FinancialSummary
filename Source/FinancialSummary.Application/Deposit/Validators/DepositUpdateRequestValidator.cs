@@ -2,13 +2,17 @@ namespace FinancialSummary.Application.Deposit.Validators;
 
 using Contracts.Repository;
 using Domain.Entities;
+using Domain.Entities.Deposit;
 using FluentValidation;
 using Requests;
 
 internal class DepositUpdateRequestValidator: AbstractValidator<UpdateDepositRequest>
 {
-	public DepositUpdateRequestValidator()
+	public DepositUpdateRequestValidator(IRepository<DepositEntity> repository)
 	{
+		RuleFor(x => x.Id).MustAsync(async (id, ct) => await repository.ExistsAsync(id, ct))
+			.WithMessage(x => $"Deposit with id {x.Id} does not exists.").WithErrorCode(ValidationErrorCodes.EntityNotFound);
+		
 		RuleFor(x => x.Cash)
 			.GreaterThan(0)
 			.Unless(x => x.Cash is null)
@@ -35,19 +39,5 @@ internal class DepositUpdateRequestValidator: AbstractValidator<UpdateDepositReq
 			.GreaterThan(0)
 			.Unless(x => x.CapitalizationPerYear is null)
 			.Configure(c => c.MessageBuilder = _ => "Capitalization Per Year value must be greater than 0 and less than 12.");
-
-		RuleFor(x => x.StartDate)
-			.GreaterThan(new DateTime(2000, 1, 1))
-			.WithMessage("Start Date Year can not be earlier than 2000.")
-			.LessThan(DateTime.Now + TimeSpan.FromDays(1))
-			.Unless(x => x.StartDate is null)
-			.WithMessage("Start Date can not be in future.");
-		
-		RuleFor(x => x.FinishDate)
-			.GreaterThan(new DateTime(2000, 1, 1))
-			.WithMessage("Finish Date Year can not be earlier than 2000.")
-			.GreaterThan(x => x.StartDate)
-			.Unless(x => x.FinishDate is null)
-			.WithMessage("Finish Date can not be before start Date.");
 	}
 }
