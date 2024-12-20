@@ -1,7 +1,6 @@
 namespace FinancialSummary.Domain.Factories;
 
 using Abstract.Factories;
-using Entities;
 using Entities.Deposit;
 using Shared.Extensions;
 
