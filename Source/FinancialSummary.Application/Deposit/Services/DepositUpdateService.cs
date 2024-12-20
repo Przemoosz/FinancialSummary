@@ -1,8 +1,10 @@
 namespace FinancialSummary.Application.Deposit.Services;
 
+using Abstraction.Deposit.Services;
 using Contracts.Repository;
 using Domain.Entities.Deposit;
 using Extensions;
+using Extensions.Entity;
 
 internal sealed class DepositUpdateService: IDepositUpdateService
 {

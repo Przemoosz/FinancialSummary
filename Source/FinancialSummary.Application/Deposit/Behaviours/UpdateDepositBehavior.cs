@@ -8,7 +8,7 @@ using Requests;
 using Result;
 using Shared.Extensions;
 
-public class UpdateDepositBehavior: IPipelineBehavior<UpdateDepositRequest, OperationResult>
+internal class UpdateDepositBehavior: IPipelineBehavior<UpdateDepositRequest, OperationResult>
 {
 	private readonly IValidator<UpdateDepositRequest> _validator;
 	private readonly ILogger<UpdateDepositBehavior> _logger;

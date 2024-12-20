@@ -1,8 +1,7 @@
 namespace FinancialSummary.Application.Deposit.Handlers;
 
-using Contracts.Repository;
-using Domain.Entities;
-using Domain.Entities.Deposit;
+using System.Net;
+using Abstraction.Deposit.Services;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Requests;
@@ -11,7 +10,6 @@ using Services;
 
 internal sealed class UpdateDepositHandler: IRequestHandler<UpdateDepositRequest, OperationResult>
 {
-	private readonly IRepository<DepositEntity> _repository;
 	private readonly IDepositUpdateService _depositUpdateService;
 	private readonly ILogger<UpdateDepositHandler> _logger;
 
@@ -23,8 +21,17 @@ internal sealed class UpdateDepositHandler: IRequestHandler<UpdateDepositRequest
 	
 	public async Task<OperationResult> Handle(UpdateDepositRequest request, CancellationToken cancellationToken)
 	{
-		await _depositUpdateService.UpdateAsync(request.Id, request.ToUpdateEntity(), cancellationToken);
-		
-		throw new NotImplementedException();
+		try
+		{
+			await _depositUpdateService.UpdateAsync(request.Id, request.ToUpdateEntity(), cancellationToken);
+		}
+		catch (Exception e)
+		{
+			_logger.LogError(e, $"Failed to update entity {request.Id}");
+			return new OperationFailed("Error when updating deposit entity", e.Message,
+				HttpStatusCode.InternalServerError);
+		}
+
+		return new OperationSuccessful(request.Id);
 	}
 }

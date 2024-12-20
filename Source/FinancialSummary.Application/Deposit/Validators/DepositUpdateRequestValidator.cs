@@ -1,7 +1,6 @@
 namespace FinancialSummary.Application.Deposit.Validators;
 
 using Contracts.Repository;
-using Domain.Entities;
 using Domain.Entities.Deposit;
 using FluentValidation;
 using Requests;

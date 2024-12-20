@@ -1,9 +1,9 @@
-namespace FinancialSummary.Application.Extensions;
+namespace FinancialSummary.Application.Extensions.Entity;
 
 using System.Linq.Expressions;
 using System.Reflection;
 using Expressions;
-using Domain.Abstract.Entities;
+using FinancialSummary.Domain.Abstract.Entities;
 
 internal static class EntityExtensions
 {
@@ -26,13 +26,13 @@ internal static class EntityExtensions
 		where TEntity : IEntity 
 		where TProperty : struct
 	{
-		if (value.HasValue)
+		if (!value.HasValue)
 		{
-			PropertyInfo propertyToUpdate = expression.GetProperty();
-			propertyToUpdate.SetValue(entity, value.Value);
 			return entity;
 		}
-
+		
+		PropertyInfo propertyToUpdate = expression.GetProperty();
+		propertyToUpdate.SetValue(entity, value.Value);
 		return entity;
 	}
 }

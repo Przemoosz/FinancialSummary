@@ -1,6 +1,6 @@
-namespace FinancialSummary.Application.Deposit.Services;
+namespace FinancialSummary.Application.Abstraction.Deposit.Services;
 
-using Domain.Entities.Deposit;
+using FinancialSummary.Domain.Entities.Deposit;
 
 internal interface IDepositUpdateService
 {

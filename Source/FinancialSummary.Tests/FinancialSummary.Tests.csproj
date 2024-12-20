@@ -25,6 +25,8 @@
 
     <ItemGroup>
       <Folder Include="Api\" />
+      <Folder Include="Application\Deposit\Services\" />
+      <Folder Include="Infrastructure\" />
     </ItemGroup>
 
     <ItemGroup>

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Requests;
 using Result;
 
-public class DeleteRepositoryHandler: IRequestHandler<DeleteDepositRequest, OperationResult>
+internal class DeleteRepositoryHandler: IRequestHandler<DeleteDepositRequest, OperationResult>
 {
 	private readonly IRepository<DepositEntity> _repository;
 	private readonly ILogger<DeleteRepositoryHandler> _logger;

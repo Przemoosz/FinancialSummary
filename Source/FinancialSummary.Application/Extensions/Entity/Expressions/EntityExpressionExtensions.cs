@@ -1,4 +1,4 @@
-namespace FinancialSummary.Application.Extensions.Expressions;
+namespace FinancialSummary.Application.Extensions.Entity.Expressions;
 
 using System.Linq.Expressions;
 using System.Reflection;

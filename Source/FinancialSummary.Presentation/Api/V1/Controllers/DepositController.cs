@@ -119,7 +119,7 @@ public sealed class DepositController: ControllerBase
 						_problemDetailsFactory.Create(failed, updateDepositRequestBody.OperationId);
 					return StatusCode((int)failed.StatusCode, problemDetails);
 				},
-				success => StatusCode((int) HttpStatusCode.Created, success.Context));
+				success => StatusCode((int) HttpStatusCode.OK, success.Context));
 		}
 	}
 }

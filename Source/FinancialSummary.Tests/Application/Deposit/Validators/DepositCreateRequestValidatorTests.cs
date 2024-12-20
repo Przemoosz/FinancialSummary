@@ -128,4 +128,18 @@ public class DepositCreateRequestValidatorTests
         result.ShouldHaveValidationErrorFor(x => x.FinishDate)
             .WithErrorMessage("Finish Date can not be before start Date.");
     }
+    
+    [Test]
+    public void Validate_ShouldReturnValid()
+    {
+        // Arrange
+        var request = new CreateDepositRequest( "ValidName", 100,5, 5, DateTime.Now, DateTime.Now.AddDays(30));
+
+        // Act
+        var result = _sut.TestValidate(request);
+
+        // Assert
+        result.ShouldNotHaveAnyValidationErrors();
+    }
+    
 }

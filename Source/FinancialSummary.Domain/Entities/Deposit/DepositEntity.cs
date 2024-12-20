@@ -17,19 +17,19 @@ public sealed record DepositEntity: IEntity
 	public decimal Cash { get; init; }
 	
 	[Required]
-	public decimal InterestRate { get; set; }
+	public decimal InterestRate { get; init; }
 	
 	[Required]
-	public int CapitalizationPerYear { get; set; }
+	public int CapitalizationPerYear { get; init; }
 	
 	[Required]
-	public DateTime ModifyDate { get; set; }
+	public DateTime ModifyDate { get; init; }
 	
 	[Required]
-	public DateTime StartDate { get; set; }
+	public DateTime StartDate { get; init; }
 	
 	[Required]
-	public DateTime FinishDate { get; set; }
+	public DateTime FinishDate { get; init; }
 	
 	public DepositEntity(string name, decimal cash, decimal interestRate, int capitalizationPerYear, DateTime startDate, DateTime finishDate)
 	{

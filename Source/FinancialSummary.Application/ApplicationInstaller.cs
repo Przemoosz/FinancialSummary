@@ -2,6 +2,7 @@ namespace FinancialSummary.Application;
 
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using Abstraction.Deposit.Services;
 using Deposit.Behaviours;
 using Deposit.Requests;
 using Deposit.Services;
