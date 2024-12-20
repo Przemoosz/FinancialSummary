@@ -1,7 +1,9 @@
 namespace FinancialSummary.Application.Result;
 
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 
+[ExcludeFromCodeCoverage]
 public sealed class OperationFailed
 {
 	public string FailureReason { get; init; }

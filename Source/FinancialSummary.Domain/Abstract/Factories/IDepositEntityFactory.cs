@@ -1,5 +1,6 @@
 namespace FinancialSummary.Domain.Abstract.Factories;
 
+using Domain.Entities.Deposit;
 using FinancialSummary.Domain.Entities;
 
 public interface IDepositEntityFactory

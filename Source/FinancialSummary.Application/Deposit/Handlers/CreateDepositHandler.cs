@@ -1,8 +1,9 @@
 namespace FinancialSummary.Application.Deposit.Handlers;
 
+using System.Net;
 using Contracts.Repository;
 using Domain.Abstract.Factories;
-using Domain.Entities;
+using Domain.Entities.Deposit;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Requests;
@@ -24,12 +25,19 @@ internal sealed class CreateDepositHandler: IRequestHandler<CreateDepositRequest
 	
 	public async Task<OperationResult> Handle(CreateDepositRequest request, CancellationToken cancellationToken)
 	{
-		// Create Entity
 		DepositEntity depositEntity = _depositEntityFactory.Create(request.Name, request.Cash, request.InterestRate,
-			request.CapitalizationPerYear, request.StartDate, request.FinishDate); 
-		
-		// Add Entity
-		await _repository.AddAsync(depositEntity, cancellationToken);
+			request.CapitalizationPerYear, request.StartDate, request.FinishDate);
+
+		try
+		{
+			await _repository.AddAsync(depositEntity, cancellationToken);
+		}
+		catch (Exception e)
+		{
+			_logger.LogError(e, $"Failed to create entity {depositEntity.Id}");
+			return new OperationFailed("Error when adding deposit to entity", e.Message,
+				HttpStatusCode.InternalServerError);
+		}
 		_logger.LogInformation($"Created entity {depositEntity.Id}");
 		return new OperationSuccessful(new {EntityId = depositEntity.Id});
 	}

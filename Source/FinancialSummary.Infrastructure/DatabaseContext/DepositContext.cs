@@ -3,6 +3,7 @@ namespace FinancialSummary.Infrastructure.DatabaseContext;
 using System.Diagnostics.CodeAnalysis;
 using Abstract.DatabaseContext;
 using Domain.Entities;
+using Domain.Entities.Deposit;
 using Microsoft.EntityFrameworkCore;
 
 [ExcludeFromCodeCoverage]

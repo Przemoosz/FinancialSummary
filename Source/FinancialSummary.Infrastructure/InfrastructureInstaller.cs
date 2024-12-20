@@ -3,6 +3,7 @@ namespace FinancialSummary.Infrastructure;
 using System.Diagnostics.CodeAnalysis;
 using Application.Contracts.Repository;
 using Domain.Entities;
+using Domain.Entities.Deposit;
 using Microsoft.Extensions.DependencyInjection;
 using Repository;
 

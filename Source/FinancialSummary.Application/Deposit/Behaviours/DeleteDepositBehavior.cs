@@ -21,7 +21,7 @@ internal sealed class DeleteDepositBehavior: IPipelineBehavior<DeleteDepositRequ
 	
 	public async Task<OperationResult> Handle(DeleteDepositRequest request, RequestHandlerDelegate<OperationResult> next, CancellationToken cancellationToken)
 	{
-		ValidationResult validationResult = await _validator.ValidateAsync(request);
+		ValidationResult validationResult = await _validator.ValidateAsync(request, cancellationToken);
 		if (!validationResult.IsValid)
 		{
 			_logger.LogWarning(validationResult.ToString());

@@ -1,6 +1,7 @@
 namespace FinancialSummary.Application.Contracts.Repository;
 
 using Domain.Entities;
+using Domain.Entities.Deposit;
 
 public interface IDepositRepository: IAsyncDisposable
 {
