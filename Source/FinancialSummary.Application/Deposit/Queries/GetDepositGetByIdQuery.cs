@@ -1,6 +1,10 @@
 namespace FinancialSummary.Application.Deposit.Queries;
 
+using System.Diagnostics.CodeAnalysis;
 using FinancialSummary.Application.Abstraction.Queries;
-using FinancialSummary.Domain.Entities;
+using Domain.Entities;
+using MediatR;
+using Result;
 
-public sealed record GetDepositGetByIdQuery(Guid Id) : GetByIdQuery<DepositEntity>(Id);
+[ExcludeFromCodeCoverage]
+public sealed record GetDepositGetByIdQuery(Guid Id) : IRequest<OperationResult>;

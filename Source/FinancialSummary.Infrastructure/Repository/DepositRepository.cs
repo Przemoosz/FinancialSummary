@@ -1,10 +1,12 @@
 namespace FinancialSummary.Infrastructure.Repository;
 
+using System.Diagnostics.CodeAnalysis;
 using Abstract.DatabaseContext;
 using Application.Contracts.Repository;
-using Domain.Entities;
+using Domain.Entities.Deposit;
 using Microsoft.EntityFrameworkCore;
 
+[ExcludeFromCodeCoverage]
 internal class DepositRepository: IRepository<DepositEntity>
 {
 	private readonly IDepositContext _depositContext;
@@ -39,7 +41,12 @@ internal class DepositRepository: IRepository<DepositEntity>
 	{
 		return _depositContext.Deposits.Where(s => s.Id.Equals(id)).ExecuteDeleteAsync(cancellationToken);
 	}
-
+	
+	public async Task UpdateAsync(CancellationToken cancellationToken)
+	{
+		await _depositContext.SaveChangesAsync(cancellationToken);
+	}
+	
 	public ValueTask DisposeAsync()
 	{
 		return _depositContext.DisposeAsync();

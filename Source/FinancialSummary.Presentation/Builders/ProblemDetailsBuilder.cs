@@ -44,6 +44,12 @@ internal sealed class ProblemDetailsBuilder: IProblemDetailsBuilderBase,
 			case HttpStatusCode.BadRequest:
 				_problemDetails.Type = "https://datatracker.ietf.org/doc/html/rfc9110#name-400-bad-request";
 				break;
+			case HttpStatusCode.InternalServerError:
+				_problemDetails.Type = "https://datatracker.ietf.org/doc/html/rfc9110#name-500-internal-server-error";
+				break;
+			case HttpStatusCode.NotFound:
+				_problemDetails.Type = "https://datatracker.ietf.org/doc/html/rfc9110#name-404-not-found";
+				break;
 			default:
 				_problemDetails.Type = "about:blank";
 				break;

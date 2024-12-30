@@ -25,5 +25,9 @@
             <_Parameter1>FinancialSummary.Tests</_Parameter1>
         </AssemblyAttribute>
     </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+    </ItemGroup>
     
 </Project>

@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using Requests;
 using Result;
 
-public class CreateDepositBehavior: IPipelineBehavior<CreateDepositRequest, OperationResult>
+internal class CreateDepositBehavior: IPipelineBehavior<CreateDepositRequest, OperationResult>
 {
 	private readonly IValidator<CreateDepositRequest> _validator;
 	private readonly ILogger<CreateDepositBehavior> _logger;
@@ -21,7 +21,7 @@ public class CreateDepositBehavior: IPipelineBehavior<CreateDepositRequest, Oper
 	
 	public async Task<OperationResult> Handle(CreateDepositRequest request, RequestHandlerDelegate<OperationResult> next, CancellationToken cancellationToken)
 	{
-		ValidationResult validationResult = await _validator.ValidateAsync(request);
+		ValidationResult validationResult = await _validator.ValidateAsync(request, cancellationToken);
 		
 		if (!validationResult.IsValid)
 		{
