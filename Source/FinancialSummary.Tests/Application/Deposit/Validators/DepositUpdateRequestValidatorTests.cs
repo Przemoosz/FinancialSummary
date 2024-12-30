@@ -35,7 +35,8 @@ public class DepositUpdateRequestValidatorTests
         result.ShouldHaveValidationErrorFor(x => x.Cash)
             .WithErrorMessage("Deposit cash can not be less or equal to zero.");
     }
-
+    
+    [Test]
     public async Task Validate_WhenNameEmpty_ShouldHaveValidationError()
     {
         // Arrange
