@@ -8,5 +8,7 @@
     &lt;TestId&gt;NUnit3x::7DE6CBA7-D073-47D9-9FF1-4002D331F3EE::net8.0::DepositCreateRequestValidatorTests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::7DE6CBA7-D073-47D9-9FF1-4002D331F3EE::net8.0::FinancialSummary.Tests.Infrastructure.temp.v&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::7DE6CBA7-D073-47D9-9FF1-4002D331F3EE::net8.0::FinancialSummary.Tests.Infrastructure.test.A&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7DE6CBA7-D073-47D9-9FF1-4002D331F3EE::net8.0::FinancialSummary.Tests.Domain.Factories.BondNameFactoryTests.Create_CreatesNameForTOS&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::7DE6CBA7-D073-47D9-9FF1-4002D331F3EE::net8.0::FinancialSummary.Tests.Domain.Factories.BondNameFactoryTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

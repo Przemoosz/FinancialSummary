@@ -1,10 +1,11 @@
 namespace FinancialSummary.Tests.Domain.Factories;
 
+using Categories;
 using FinancialSummary.Domain.Factories;
 using FinancialSummary.Shared.Extensions;
 using FluentAssertions;
 
-[TestFixture]
+[TestFixture, DomainLayerTests, Parallelizable]
 public class DepositEntityFactoryTests
 {
 	private DepositEntityFactory _factory;
