@@ -3,7 +3,7 @@ namespace FinancialSummary.Domain.Entities.Bonds.AntiInflationary
 	using FinancialSummary.Domain.Abstract.Entities;
 	using FinancialSummary.Domain.Factories;
 
-	public sealed class COI: BondBase
+	public sealed class COI: BondTypeBase
 	{
 		public COI(uint startYear, uint startMonth, decimal interestRate, decimal profit): base()
 		{

@@ -25,6 +25,4 @@ public class DepositContext: DbContext, IDepositContext
 		modelBuilder.Entity<DepositEntity>().ToTable("deposits");
 		base.OnModelCreating(modelBuilder);
 	}
-	
-	
 }

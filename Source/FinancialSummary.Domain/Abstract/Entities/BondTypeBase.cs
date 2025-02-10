@@ -3,7 +3,7 @@ namespace FinancialSummary.Domain.Abstract.Entities
 	using System.ComponentModel.DataAnnotations;
 	using Domain.Entities.Bonds;
 
-	public abstract class BondBase: IEntity
+	public class BondTypeBase: IEntity
 	{
 		public Guid Id { get; init; }
 		
@@ -32,7 +32,7 @@ namespace FinancialSummary.Domain.Abstract.Entities
 		[Required]
 		public decimal Profit { get; protected init; }
 
-		protected BondBase()
+		protected BondTypeBase()
 		{
 			Id = Guid.NewGuid();
 			ModifyDate = DateTime.UtcNow;

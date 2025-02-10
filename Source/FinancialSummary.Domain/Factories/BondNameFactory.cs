@@ -4,7 +4,7 @@ namespace FinancialSummary.Domain.Factories
 
 	internal static class BondNameFactory
 	{
-		public static string Create<TBond>(uint startYear, uint startMonth) where TBond: BondBase
+		public static string Create<TBond>(uint startYear, uint startMonth) where TBond: BondTypeBase
 		{
 			uint durationInYears = typeof(TBond).Name switch
 			{

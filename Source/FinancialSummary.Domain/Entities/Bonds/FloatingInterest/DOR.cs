@@ -1,9 +1,9 @@
 namespace FinancialSummary.Domain.Entities.Bonds.FloatingInterest
 {
 	using FinancialSummary.Domain.Abstract.Entities;
-	using FinancialSummary.Domain.Factories;
+	using Factories;
 
-	public sealed class DOR: BondBase
+	public sealed class DOR: BondTypeBase
 	{
 		public DOR(uint startYear, uint startMonth, decimal interestRate, decimal profit): base()
 		{

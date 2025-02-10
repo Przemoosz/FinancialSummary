@@ -3,7 +3,7 @@ namespace FinancialSummary.Domain.Entities.Bonds.AntiInflationary
 	using Factories;
 	using FinancialSummary.Domain.Abstract.Entities;
 
-	public sealed class EDO: BondBase
+	public sealed class EDO: BondTypeBase
 	{
 		public EDO(uint startYear, uint startMonth, decimal interestRate, decimal profit): base()
 		{

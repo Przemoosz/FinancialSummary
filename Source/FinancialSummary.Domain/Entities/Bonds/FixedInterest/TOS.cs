@@ -3,7 +3,7 @@ namespace FinancialSummary.Domain.Entities.Bonds.FixedInterest
 	using Abstract.Entities;
 	using Factories;
 
-	public sealed class TOS: BondBase
+	public sealed class TOS: BondTypeBase
 	{
 		public TOS(uint startYear, uint startMonth, decimal interestRate): base()
 		{
