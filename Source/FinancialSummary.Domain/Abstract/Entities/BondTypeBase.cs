@@ -1,18 +1,16 @@
 namespace FinancialSummary.Domain.Abstract.Entities
 {
 	using System.ComponentModel.DataAnnotations;
-	using Domain.Entities.Bonds;
 
-	public class BondTypeBase: IEntity
+	public class BondTypeBase: INamedEntity
 	{
-		public Guid Id { get; init; }
-		
-		[Required]
-		public DateTime ModifyDate { get; init; }
-		
+		[Key]
 		[Required]
 		[Length(7,7)]
 		public string Name { get; protected init; }
+		
+		[Required]
+		public DateTime ModifyDate { get; init; }
 		
 		[Required]
 		public uint StartYear { get; protected init; }
@@ -24,17 +22,11 @@ namespace FinancialSummary.Domain.Abstract.Entities
 		public uint DurationInYears { get; protected init; }
 		
 		[Required]
-		public BondType Type { get; protected init; }
-		
-		[Required]
-		public decimal InterestRate { get; protected init; }		
-		
-		[Required]
-		public decimal Profit { get; protected init; }
+		public decimal FirstYearInterestRate { get; protected init; }
 
-		protected BondTypeBase()
+		protected BondTypeBase(string name)
 		{
-			Id = Guid.NewGuid();
+			Name = name;
 			ModifyDate = DateTime.UtcNow;
 		}
 	}

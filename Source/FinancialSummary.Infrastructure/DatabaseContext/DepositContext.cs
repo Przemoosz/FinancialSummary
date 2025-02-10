@@ -15,7 +15,7 @@ public class DepositContext: DbContext, IDepositContext
 		AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 	}
 
-	public DepositContext(DbContextOptions options): base(options)
+	public DepositContext(DbContextOptions<DepositContext> options): base(options)
 	{
 		AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 	}

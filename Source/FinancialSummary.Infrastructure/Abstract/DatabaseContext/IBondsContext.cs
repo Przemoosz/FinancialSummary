@@ -1,11 +1,17 @@
 namespace FinancialSummary.Infrastructure.Abstract.DatabaseContext
 {
-	using Domain.Abstract.Entities;
+	using Domain.Entities.Bonds.AntiInflationary;
+	using Domain.Entities.Bonds.FixedInterest;
+	using Domain.Entities.Bonds.FloatingInterest;
 	using Microsoft.EntityFrameworkCore;
 
-	public interface IBondsContext: IAsyncDisposable
+	public interface IBondTypesContext: IAsyncDisposable
 	{
-		DbSet<BondTypeBase> Bonds { get; }
+		DbSet<ThreeYearsFixedInterestBondType> ThreeYearsFixedInterestBonds { get; }
+		DbSet<TwoYearsFloatingInterestBondType> TwoYearsFloatingInterestBonds { get; set; }
+		DbSet<OneYearFloatingInterestBondType> OneYearFloatingInterestBonds { get; set; }
+		DbSet<FourYearsAntiInflationaryBondType> FourYearsAntiInflationaryBonds { get; set; }
+		DbSet<TenYearsAntiInflationaryBondType> TenYearsAntiInflationaryBondBonds { get; set; }
 		Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 	}
 }

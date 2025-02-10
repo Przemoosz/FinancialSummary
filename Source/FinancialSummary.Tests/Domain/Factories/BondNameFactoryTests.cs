@@ -8,7 +8,6 @@ namespace FinancialSummary.Tests.Domain.Factories
 	using FluentAssertions;
 
 	[TestFixture, DomainLayerTests, Parallelizable]
-
 	public sealed class BondNameFactoryTests
 	{
 		private const uint StartYear = 2024;
@@ -17,7 +16,7 @@ namespace FinancialSummary.Tests.Domain.Factories
 		public void Create_IfMonthIsGreaterThan12_ThrowsArgumentException()
 		{
 			// Act && Assert
-			Assert.Throws<ArgumentException>(() => BondNameFactory.Create<EDO>(StartYear, 13));
+			Assert.Throws<ArgumentException>(() => BondNameFactory.Create<TenYearsAntiInflationaryBondType>(StartYear, 13));
 		}
 		
 		[Test]
@@ -28,7 +27,7 @@ namespace FinancialSummary.Tests.Domain.Factories
 			const uint durationInYear = 3;
 			
 			// Act
-			string actual = BondNameFactory.Create<TOS>(StartYear, startMonth);
+			string actual = BondNameFactory.Create<ThreeYearsFixedInterestBondType>(StartYear, startMonth);
 			
 			// Assert
 			actual.Should().Be("TOS0827");
@@ -42,7 +41,7 @@ namespace FinancialSummary.Tests.Domain.Factories
 			const uint durationInYear = 4;
 			
 			// Act
-			string actual = BondNameFactory.Create<COI>(StartYear, startMonth);
+			string actual = BondNameFactory.Create<FourYearsAntiInflationaryBondType>(StartYear, startMonth);
 			
 			// Assert
 			actual.Should().Be("COI1028");
@@ -56,7 +55,7 @@ namespace FinancialSummary.Tests.Domain.Factories
 			const uint durationInYear = 10;
 			
 			// Act
-			string actual = BondNameFactory.Create<EDO>(StartYear, startMonth);
+			string actual = BondNameFactory.Create<TenYearsAntiInflationaryBondType>(StartYear, startMonth);
 			
 			// Assert
 			actual.Should().Be("EDO0134");
@@ -70,10 +69,10 @@ namespace FinancialSummary.Tests.Domain.Factories
 			const uint durationInYear = 1;
 			
 			// Act
-			string actual = BondNameFactory.Create<ROR>(StartYear, startMonth);
+			string actual = BondNameFactory.Create<OneYearFloatingInterestBondType>(2008, startMonth);
 			
 			// Assert
-			actual.Should().Be("ROR0425");
+			actual.Should().Be("ROR0409");
 		}
 		
 		[Test]
@@ -84,7 +83,7 @@ namespace FinancialSummary.Tests.Domain.Factories
 			const uint durationInYear = 2;
 			
 			// Act
-			string actual = BondNameFactory.Create<DOR>(StartYear, startMonth);
+			string actual = BondNameFactory.Create<TwoYearsFloatingInterestBondType>(StartYear, startMonth);
 			
 			// Assert
 			actual.Should().Be("DOR1226");

@@ -26,7 +26,7 @@ public class Program
             app.UseSwaggerUI();
             // await ApplyMigrations(app);
         }
-        // await ApplyMigrations(app);
+        await ApplyMigrations(app);
         app.UseHttpsRedirection();
 
         app.MapControllers();
@@ -43,5 +43,9 @@ public class Program
         await using DepositContext context = scope.ServiceProvider.GetRequiredService<DepositContext>();
 
         await context.Database.MigrateAsync();
+        
+        await using BondTypesContext bondTypesContext = scope.ServiceProvider.GetRequiredService<BondTypesContext>();
+
+        await bondTypesContext.Database.MigrateAsync();
     }
 }

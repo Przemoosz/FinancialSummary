@@ -8,14 +8,24 @@ namespace FinancialSummary.Domain.Factories
 		{
 			uint durationInYears = typeof(TBond).Name switch
 			{
-				"EDO" => 10,
-				"COI" => 4,
-				"TOS" => 3,
-				"DOR" => 2,
-				"ROR" => 1,
+				"TenYearsAntiInflationaryBondType" => 10,
+				"FourYearsAntiInflationaryBondType" => 4,
+				"ThreeYearsFixedInterestBondType" => 3,
+				"TwoYearsFloatingInterestBondType" => 2,
+				"OneYearFloatingInterestBondType" => 1,
 				_ => throw new ArgumentException("Unexpected type.")
 			};
 
+			string name = typeof(TBond).Name switch
+			{
+				"TenYearsAntiInflationaryBondType" => "EDO",
+				"FourYearsAntiInflationaryBondType" => "COI",
+				"ThreeYearsFixedInterestBondType" => "TOS",
+				"TwoYearsFloatingInterestBondType" => "DOR",
+				"OneYearFloatingInterestBondType" => "ROR",
+				_ => throw new ArgumentException("Unexpected type.")
+			};
+			
 			if (startMonth > 12)
 			{
 				throw new ArgumentException("Start Month can not be greater that 12");
@@ -23,9 +33,11 @@ namespace FinancialSummary.Domain.Factories
 			
 			string endMonth = startMonth >= 10 ? startMonth.ToString() : $"0{startMonth}";
 
-			string endYear = (startYear % 100 + durationInYears).ToString();
+			uint endYear = startYear % 100 + durationInYears;
 			
-			return $"{typeof(TBond).Name}{endMonth}{endYear}";
+			string endYearString = endYear >=10 ? endYear.ToString() : $"0{endYear}";
+			
+			return $"{name}{endMonth}{endYearString}";
 		}
 	}
 }
