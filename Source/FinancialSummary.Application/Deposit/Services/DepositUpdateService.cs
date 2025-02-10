@@ -9,10 +9,10 @@ using Shared.Abstraction.Wrappers;
 
 internal sealed class DepositUpdateService: IDepositUpdateService
 {
-	private readonly IRepository<DepositEntity> _repository;
+	private readonly IRepository<Guid, DepositEntity> _repository;
 	private readonly IDateTimeWrapper _dateTimeWrapper;
 
-	public DepositUpdateService(IRepository<DepositEntity> repository, IDateTimeWrapper dateTimeWrapper)
+	public DepositUpdateService(IRepository<Guid, DepositEntity> repository, IDateTimeWrapper dateTimeWrapper)
 	{
 		_repository = repository;
 		_dateTimeWrapper = dateTimeWrapper;
@@ -20,7 +20,7 @@ internal sealed class DepositUpdateService: IDepositUpdateService
 		
 	public async Task UpdateAsync(Guid id, UpdateDepositEntity updateDepositEntity, CancellationToken cancellationToken)
 	{
-		DepositEntity depositEntity = await _repository.GetByIdAsync(id, cancellationToken);
+		DepositEntity depositEntity = await _repository.GetByKeyAsync(id, cancellationToken);
 
 		depositEntity
 			.UpdateProperty(x => x.Name, updateDepositEntity.Name)

@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using FinancialSummary.Domain.Abstract.Entities;
 
 [ExcludeFromCodeCoverage]
-public sealed record DepositEntity: IEntity
+public sealed record DepositEntity: IEntity<Guid>
 {
 	public Guid Id { get; init; }
 	

@@ -15,6 +15,6 @@ public static class InfrastructureInstaller
 {
 	public static void InstallInfrastructure(this IServiceCollection serviceCollection)
 	{
-		serviceCollection.AddScoped<IRepository<DepositEntity>, DepositRepository>();
+		serviceCollection.AddScoped<IRepository<Guid, DepositEntity>, DepositRepository>();
 	}
 }

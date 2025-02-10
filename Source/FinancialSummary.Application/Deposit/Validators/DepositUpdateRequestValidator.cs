@@ -7,7 +7,7 @@ using Requests;
 
 internal class DepositUpdateRequestValidator: AbstractValidator<UpdateDepositRequest>
 {
-	public DepositUpdateRequestValidator(IRepository<DepositEntity> repository)
+	public DepositUpdateRequestValidator(IRepository<Guid, DepositEntity> repository)
 	{
 		RuleFor(x => x.Id).MustAsync(async (id, ct) => await repository.ExistsAsync(id, ct))
 			.WithMessage(x => $"Deposit with id {x.Id} does not exists.").WithErrorCode(ValidationErrorCodes.EntityNotFound);

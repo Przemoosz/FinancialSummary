@@ -10,9 +10,9 @@ using Result;
 
 internal class GetDepositByIdHandler: IRequestHandler<GetDepositGetByIdQuery, OperationResult> 
 {
-	private readonly IRepository<DepositEntity> _repository;
+	private readonly IRepository<Guid, DepositEntity> _repository;
 
-	public GetDepositByIdHandler(IRepository<DepositEntity> repository)
+	public GetDepositByIdHandler(IRepository<Guid, DepositEntity> repository)
 	{
 		_repository = repository;
 	}
@@ -21,7 +21,7 @@ internal class GetDepositByIdHandler: IRequestHandler<GetDepositGetByIdQuery, Op
 	{
 		try
 		{
-			var entity = await _repository.GetByIdAsync(query.Id, cancellationToken);
+			var entity = await _repository.GetByKeyAsync(query.Id, cancellationToken);
 			if (entity is null)
 			{
 				return new OperationFailed("Entity does not exists", $"Entity with id: {query.Id} does not exists",

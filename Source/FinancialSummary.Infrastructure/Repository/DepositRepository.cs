@@ -7,7 +7,7 @@ using Domain.Entities.Deposit;
 using Microsoft.EntityFrameworkCore;
 
 [ExcludeFromCodeCoverage]
-internal class DepositRepository: IRepository<DepositEntity>
+internal class DepositRepository: IRepository<Guid, DepositEntity>
 {
 	private readonly IDepositContext _depositContext;
 
@@ -16,14 +16,14 @@ internal class DepositRepository: IRepository<DepositEntity>
 		_depositContext = depositContext;
 	}
 	
-	public Task<DepositEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+	public Task<DepositEntity> GetByKeyAsync(Guid key, CancellationToken cancellationToken)
 	{
-		return _depositContext.Deposits.FirstOrDefaultAsync(s => s.Id.Equals(id), cancellationToken);
+		return _depositContext.Deposits.FirstOrDefaultAsync(s => s.Id.Equals(key), cancellationToken);
 	}
 
-	public Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken)
+	public Task<bool> ExistsAsync(Guid key, CancellationToken cancellationToken)
 	{
-		return _depositContext.Deposits.AnyAsync(x => x.Id.Equals(id), cancellationToken);
+		return _depositContext.Deposits.AnyAsync(x => x.Id.Equals(key), cancellationToken);
 	}
 
 	public IAsyncEnumerable<DepositEntity> GetAll(CancellationToken cancellationToken)
@@ -37,9 +37,9 @@ internal class DepositRepository: IRepository<DepositEntity>
 		await _depositContext.SaveChangesAsync(cancellationToken);
 	}
 
-	public Task DeleteAsync(Guid id, CancellationToken cancellationToken)
+	public Task DeleteAsync(Guid key, CancellationToken cancellationToken)
 	{
-		return _depositContext.Deposits.Where(s => s.Id.Equals(id)).ExecuteDeleteAsync(cancellationToken);
+		return _depositContext.Deposits.Where(s => s.Id.Equals(key)).ExecuteDeleteAsync(cancellationToken);
 	}
 	
 	public async Task UpdateAsync(CancellationToken cancellationToken)

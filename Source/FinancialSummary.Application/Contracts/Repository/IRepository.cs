@@ -2,16 +2,16 @@ namespace FinancialSummary.Application.Contracts.Repository;
 
 using Domain.Abstract.Entities;
 
-public interface IRepository<TEntity> where TEntity: IEntity
+public interface IRepository<in TKey, TEntity> where TEntity: IEntity<TKey>
 {
-	Task<TEntity> GetByIdAsync(Guid id, CancellationToken cancellationToken);
-	Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken);
+	Task<TEntity> GetByKeyAsync(TKey key, CancellationToken cancellationToken);
+	Task<bool> ExistsAsync(TKey key, CancellationToken cancellationToken);
 	
 	IAsyncEnumerable<TEntity> GetAll(CancellationToken cancellationToken);
 	
 	Task AddAsync(TEntity depositEntity, CancellationToken cancellationToken);
 	
-	Task DeleteAsync(Guid id, CancellationToken cancellationToken);
+	Task DeleteAsync(TKey key, CancellationToken cancellationToken);
 	Task UpdateAsync(CancellationToken cancellationToken);
 
 }

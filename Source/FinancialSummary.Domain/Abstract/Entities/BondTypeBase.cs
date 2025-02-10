@@ -2,12 +2,11 @@ namespace FinancialSummary.Domain.Abstract.Entities
 {
 	using System.ComponentModel.DataAnnotations;
 
-	public class BondTypeBase: INamedEntity
+	public class BondTypeBase: IEntity<string>
 	{
-		[Key]
 		[Required]
 		[Length(7,7)]
-		public string Name { get; protected init; }
+		public string Id { get; protected init; }
 		
 		[Required]
 		public DateTime ModifyDate { get; init; }
@@ -24,9 +23,9 @@ namespace FinancialSummary.Domain.Abstract.Entities
 		[Required]
 		public decimal FirstYearInterestRate { get; protected init; }
 
-		protected BondTypeBase(string name)
+		protected BondTypeBase(string id)
 		{
-			Name = name;
+			Id = id;
 			ModifyDate = DateTime.UtcNow;
 		}
 	}
