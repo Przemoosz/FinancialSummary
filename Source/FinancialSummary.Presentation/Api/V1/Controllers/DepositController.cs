@@ -100,7 +100,7 @@ public sealed class DepositController: ControllerBase
 	[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DepositEntity))]
 	[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
 	[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
-	public async Task<IActionResult> UpdateDeposit([FromBody(EmptyBodyBehavior = EmptyBodyBehavior.Disallow )] UpdateDepositRequestBody updateDepositRequestBody, [FromRoute(Name = "Id")] Guid id)
+	public async Task<IActionResult> UpdateDeposit([FromBody(EmptyBodyBehavior = EmptyBodyBehavior.Allow)] UpdateDepositRequestBody updateDepositRequestBody, [FromRoute(Name = "Id")] Guid id)
 	{
 		using (_logger.BeginScope(new Dictionary<string, object>() {{"OperationId", updateDepositRequestBody.OperationId.GetValueOrDefault()}}))
 		{

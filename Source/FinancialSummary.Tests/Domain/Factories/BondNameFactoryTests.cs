@@ -24,7 +24,6 @@ namespace FinancialSummary.Tests.Domain.Factories
 		{
 			// Arrange
 			const uint startMonth = 8;
-			const uint durationInYear = 3;
 			
 			// Act
 			string actual = BondNameFactory.Create<ThreeYearsFixedInterestBondType>(StartYear, startMonth);
@@ -38,7 +37,6 @@ namespace FinancialSummary.Tests.Domain.Factories
 		{
 			// Arrange
 			const uint startMonth = 10;
-			const uint durationInYear = 4;
 			
 			// Act
 			string actual = BondNameFactory.Create<FourYearsAntiInflationaryBondType>(StartYear, startMonth);
@@ -52,7 +50,6 @@ namespace FinancialSummary.Tests.Domain.Factories
 		{
 			// Arrange
 			const uint startMonth = 1;
-			const uint durationInYear = 10;
 			
 			// Act
 			string actual = BondNameFactory.Create<TenYearsAntiInflationaryBondType>(StartYear, startMonth);
@@ -66,7 +63,6 @@ namespace FinancialSummary.Tests.Domain.Factories
 		{
 			// Arrange
 			const uint startMonth = 4;
-			const uint durationInYear = 1;
 			
 			// Act
 			string actual = BondNameFactory.Create<OneYearFloatingInterestBondType>(2008, startMonth);
@@ -80,7 +76,6 @@ namespace FinancialSummary.Tests.Domain.Factories
 		{
 			// Arrange
 			const uint startMonth = 12;
-			const uint durationInYear = 2;
 			
 			// Act
 			string actual = BondNameFactory.Create<TwoYearsFloatingInterestBondType>(StartYear, startMonth);

@@ -13,5 +13,6 @@ namespace FinancialSummary.Infrastructure.Abstract.DatabaseContext
 		DbSet<FourYearsAntiInflationaryBondType> FourYearsAntiInflationaryBonds { get; set; }
 		DbSet<TenYearsAntiInflationaryBondType> TenYearsAntiInflationaryBondBonds { get; set; }
 		Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+		DbSet<TEntity> Set<TEntity>() where TEntity : class;
 	}
 }
