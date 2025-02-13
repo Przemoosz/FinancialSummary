@@ -36,9 +36,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="BondTypes\Behaviors\" />
       <Folder Include="BondTypes\Queries\" />
-      <Folder Include="BondTypes\Validators\" />
     </ItemGroup>
     
 </Project>

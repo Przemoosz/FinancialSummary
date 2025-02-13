@@ -63,7 +63,7 @@ namespace FinancialSummary.Application.BondTypes.Handlers
 
 		private async Task CreateAsync<TBond>(TBond bondType, IServiceScope scope, CancellationToken cancellationToken) where TBond: BondTypeBase
 		{
-			var repository = scope.ServiceProvider.GetService<IRepository<string, BondTypeBase>>();
+			var repository = scope.ServiceProvider.GetService<IRepository<string, TBond>>();
 			await repository.AddAsync(bondType, cancellationToken);
 		}
 		

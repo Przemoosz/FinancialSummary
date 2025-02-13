@@ -21,8 +21,8 @@ namespace FinancialSummary.Presentation.Api.V1.BondTypes.Controllers
 		[HttpPut]
 		public async Task<IActionResult> CreateBondType([FromBody] CreateBondTypeRequestBody requestBody)
 		{
-			CreateBondTypeRequest request = new CreateBondTypeRequest(Guid.Empty, BondTypes.ROR, requestBody.StartYear,
-				requestBody.StartMonth, requestBody.DurationInYears, requestBody.FirstYearInterestRate);
+			CreateBondTypeRequest request = new CreateBondTypeRequest(requestBody.OperationId ?? Guid.NewGuid(), requestBody.BondType, requestBody.StartYear,
+				requestBody.StartMonth, requestBody.FirstYearInterestRate, requestBody.Profit);
 			await _mediator.Send(request);
 			return null;
 		}

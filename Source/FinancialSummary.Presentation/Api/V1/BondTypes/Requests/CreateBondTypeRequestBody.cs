@@ -9,6 +9,6 @@ namespace FinancialSummary.Presentation.Api.V1.BondTypes.Requests
 		BondTypes BondType,
 		uint StartYear,
 		uint StartMonth,
-		uint DurationInYears,
-		decimal FirstYearInterestRate);
+		decimal FirstYearInterestRate,
+		decimal Profit);
 }
