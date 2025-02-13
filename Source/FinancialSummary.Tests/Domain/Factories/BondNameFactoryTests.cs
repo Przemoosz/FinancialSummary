@@ -83,6 +83,5 @@ namespace FinancialSummary.Tests.Domain.Factories
 			// Assert
 			actual.Should().Be("DOR1226");
 		}
-		
 	}
 }

@@ -9,7 +9,7 @@ namespace FinancialSummary.Domain.Entities.Bonds.AntiInflationary
 		[Required]
 		public decimal Profit { get; init; }
 		
-		public TenYearsAntiInflationaryBondType(uint startYear, uint startMonth, decimal firstYearInterestRate, decimal profit) : base(BondNameFactory.Create<TenYearsAntiInflationaryBondType>(startMonth, startYear))
+		public TenYearsAntiInflationaryBondType(uint startYear, uint startMonth, decimal firstYearInterestRate, decimal profit) : base(BondNameFactory.Create<TenYearsAntiInflationaryBondType>(startYear, startMonth))
 		{
 			StartYear = startYear;
 			StartMonth = startMonth;

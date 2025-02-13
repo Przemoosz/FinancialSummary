@@ -5,7 +5,7 @@ namespace FinancialSummary.Domain.Entities.Bonds.FixedInterest
 
 	public sealed class ThreeYearsFixedInterestBondType: BondTypeBase
 	{
-		public ThreeYearsFixedInterestBondType(uint startYear, uint startMonth, decimal firstYearInterestRate): base(BondNameFactory.Create<ThreeYearsFixedInterestBondType>(startMonth, startYear))
+		public ThreeYearsFixedInterestBondType(uint startYear, uint startMonth, decimal firstYearInterestRate): base(BondNameFactory.Create<ThreeYearsFixedInterestBondType>(startYear, startMonth))
 		{
 			StartYear = startYear;
 			StartMonth = startMonth;
