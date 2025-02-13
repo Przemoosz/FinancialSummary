@@ -9,7 +9,7 @@ namespace FinancialSummary.Domain.Entities.Bonds.FloatingInterest
 		[Required]
 		public decimal Profit { get; init; }
 		
-		public OneYearFloatingInterestBondType(uint startYear, uint startMonth, decimal firstYearInterestRate, decimal profit): base(BondNameFactory.Create<OneYearFloatingInterestBondType>(startMonth, startYear))
+		public OneYearFloatingInterestBondType(uint startYear, uint startMonth, decimal firstYearInterestRate, decimal profit): base(BondNameFactory.Create<OneYearFloatingInterestBondType>(startYear, startMonth))
 		{
 			StartYear = startYear;
 			StartMonth = startMonth;

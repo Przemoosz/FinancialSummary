@@ -1,13 +1,12 @@
-namespace FinancialSummary.Presentation.Api.V1.Controllers;
+namespace FinancialSummary.Presentation.Api.V1.Deposit.Controllers;
 
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
-using Abstraction.Factories;
-using Application.Deposit.Queries;
-using Application.Deposit.Requests;
-using Application.Result;
-using Domain.Entities;
-using Domain.Entities.Deposit;
+using FinancialSummary.Application.Deposit.Queries;
+using FinancialSummary.Application.Deposit.Requests;
+using FinancialSummary.Application.Result;
+using FinancialSummary.Domain.Entities.Deposit;
+using FinancialSummary.Presentation.Abstraction.Factories;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

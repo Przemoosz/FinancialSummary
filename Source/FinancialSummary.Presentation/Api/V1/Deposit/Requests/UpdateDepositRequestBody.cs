@@ -1,4 +1,4 @@
-namespace FinancialSummary.Presentation.Api.V1.Requests;
+namespace FinancialSummary.Presentation.Api.V1.Deposit.Requests;
 
 using System.Diagnostics.CodeAnalysis;
 

@@ -1,12 +1,12 @@
-namespace FinancialSummary.Application.Deposit.Behaviours;
+namespace FinancialSummary.Application.Deposit.Behaviors;
 
 using System.Net;
+using FinancialSummary.Application.Deposit.Requests;
+using FinancialSummary.Application.Result;
+using FinancialSummary.Shared.Extensions;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Requests;
-using Result;
-using Shared.Extensions;
 
 internal class UpdateDepositBehavior: IPipelineBehavior<UpdateDepositRequest, OperationResult>
 {

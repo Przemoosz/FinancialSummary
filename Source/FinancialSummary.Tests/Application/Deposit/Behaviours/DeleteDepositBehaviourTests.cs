@@ -4,7 +4,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Categories;
-using FinancialSummary.Application.Deposit.Behaviours;
+using FinancialSummary.Application.Deposit.Behaviors;
 using FinancialSummary.Application.Deposit.Requests;
 using FinancialSummary.Application.Result;
 using FluentAssertions;

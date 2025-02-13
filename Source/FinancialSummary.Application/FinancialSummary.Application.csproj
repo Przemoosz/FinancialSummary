@@ -34,5 +34,11 @@
     <ItemGroup>
         <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="BondTypes\Behaviors\" />
+      <Folder Include="BondTypes\Queries\" />
+      <Folder Include="BondTypes\Validators\" />
+    </ItemGroup>
     
 </Project>

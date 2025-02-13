@@ -1,12 +1,12 @@
-namespace FinancialSummary.Application.Deposit.Behaviours;
+namespace FinancialSummary.Application.Deposit.Behaviors;
 
 using System.Net;
+using FinancialSummary.Application.Deposit.Requests;
+using FinancialSummary.Application.Result;
 using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using Requests;
-using Result;
 
 internal sealed class DeleteDepositBehavior: IPipelineBehavior<DeleteDepositRequest, OperationResult>
 {

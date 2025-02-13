@@ -3,7 +3,7 @@ namespace FinancialSummary.Tests.Application.Deposit.Behaviours
 	using System.Net;
 	using Categories;
 	using FinancialSummary.Application;
-	using FinancialSummary.Application.Deposit.Behaviours;
+	using FinancialSummary.Application.Deposit.Behaviors;
 	using FinancialSummary.Application.Deposit.Requests;
 	using FinancialSummary.Application.Result;
 	using FluentAssertions;
