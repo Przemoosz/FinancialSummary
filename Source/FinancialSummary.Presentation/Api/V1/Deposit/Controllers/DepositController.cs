@@ -68,7 +68,7 @@ public sealed class DepositController: ControllerBase
 			_ => Ok());
 	}
 	
-	[HttpPut]
+	[HttpPost]
 	[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DepositEntity))]
 	[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
 	[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]

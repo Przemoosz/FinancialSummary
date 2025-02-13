@@ -12,14 +12,14 @@ using static TddXt.AnyRoot.Root;
 [ApplicationLayerTests, Parallelizable]
 public class DepositUpdateServiceTests
 {
-	private IRepository<DepositEntity> _repository;
+	private IRepository<Guid, DepositEntity> _repository;
 	private DepositUpdateService _sut;
 	private IDateTimeWrapper _dateTimeWrapper;
 
 	[SetUp]
 	public void Setup()
 	{
-		_repository = Substitute.For<IRepository<DepositEntity>>();
+		_repository = Substitute.For<IRepository<Guid, DepositEntity>>();
 		_dateTimeWrapper = Substitute.For<IDateTimeWrapper>();
 		_sut = new DepositUpdateService(_repository, _dateTimeWrapper);
 	}
@@ -35,7 +35,7 @@ public class DepositUpdateServiceTests
 		const decimal newInterestRate = -8;
 		DateTime newModifyDate = new DateTime(1939, 9, 1);
 		UpdateDepositEntity updateDepositEntity = new UpdateDepositEntity(newName, newCash, newInterestRate, newCapitalization);
-		_repository.GetByIdAsync(depositEntity.Id, CancellationToken.None).Returns(depositEntity);
+		_repository.GetByKeyAsync(depositEntity.Id, CancellationToken.None).Returns(depositEntity);
 		_dateTimeWrapper.UtcNow.Returns(newModifyDate);
 		
 		// Act
@@ -48,7 +48,6 @@ public class DepositUpdateServiceTests
 		depositEntity.InterestRate.Should().Be(newInterestRate);
 		depositEntity.ModifyDate.Should().Be(newModifyDate);
 		_repository.Received(1).UpdateAsync(CancellationToken.None);
-
 	}
 	
 }

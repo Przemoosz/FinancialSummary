@@ -13,12 +13,12 @@ using NSubstitute;
 public class DepositUpdateRequestValidatorTests
 {
     private DepositUpdateRequestValidator _sut;
-    private IRepository<DepositEntity> _repository;
+    private IRepository<Guid, DepositEntity> _repository;
 
     [SetUp]
     public void SetUp()
     {
-        _repository = Substitute.For<IRepository<DepositEntity>>();
+        _repository = Substitute.For<IRepository<Guid, DepositEntity>>();
         _sut = new DepositUpdateRequestValidator(_repository);
     }
 

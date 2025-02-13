@@ -19,14 +19,14 @@ using NUnit.Framework;
 [TestFixture]
 public class DeleteRepositoryHandlerTests
 {
-    private IRepository<DepositEntity> _repository;
+    private IRepository<Guid, DepositEntity> _repository;
     private ILogger<DeleteRepositoryHandler> _logger;
     private IRequestHandler<DeleteDepositRequest, OperationResult> _sut;
 
     [SetUp]
     public void SetUp()
     {
-        _repository = Substitute.For<IRepository<DepositEntity>>();
+        _repository = Substitute.For<IRepository<Guid, DepositEntity>>();
         _logger = Substitute.For<ILogger<DeleteRepositoryHandler>>();
         _sut = new DeleteRepositoryHandler(_repository, _logger);
     }
