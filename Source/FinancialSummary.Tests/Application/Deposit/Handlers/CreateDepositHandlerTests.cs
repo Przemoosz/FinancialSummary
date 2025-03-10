@@ -24,7 +24,7 @@ using static TddXt.AnyRoot.Root;
 [Parallelizable, ApplicationLayerTests]
 public class CreateDepositHandlerTests
 {
-    private IRepository<DepositEntity> _repository;
+    private IRepository<Guid, DepositEntity> _repository;
     private IDepositEntityFactory _depositEntityFactory;
     private ILogger<CreateDepositRequest> _logger;
     private IRequestHandler<CreateDepositRequest, OperationResult> _handler;
@@ -32,7 +32,7 @@ public class CreateDepositHandlerTests
     [SetUp]
     public void SetUp()
     {
-        _repository = Substitute.For<IRepository<DepositEntity>>();
+        _repository = Substitute.For<IRepository<Guid, DepositEntity>>();
         _depositEntityFactory = Substitute.For<IDepositEntityFactory>();
         _logger = Substitute.For<ILogger<CreateDepositRequest>>();
         _handler = new CreateDepositHandler(_repository, _depositEntityFactory, _logger);

@@ -1,13 +1,12 @@
-namespace FinancialSummary.Presentation.Api.V1.Controllers;
+namespace FinancialSummary.Presentation.Api.V1.Deposit.Controllers;
 
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
-using Abstraction.Factories;
-using Application.Deposit.Queries;
-using Application.Deposit.Requests;
-using Application.Result;
-using Domain.Entities;
-using Domain.Entities.Deposit;
+using FinancialSummary.Application.Deposit.Queries;
+using FinancialSummary.Application.Deposit.Requests;
+using FinancialSummary.Application.Result;
+using FinancialSummary.Domain.Entities.Deposit;
+using FinancialSummary.Presentation.Abstraction.Factories;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -69,7 +68,7 @@ public sealed class DepositController: ControllerBase
 			_ => Ok());
 	}
 	
-	[HttpPut]
+	[HttpPost]
 	[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DepositEntity))]
 	[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
 	[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
@@ -100,7 +99,7 @@ public sealed class DepositController: ControllerBase
 	[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DepositEntity))]
 	[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
 	[ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
-	public async Task<IActionResult> UpdateDeposit([FromBody(EmptyBodyBehavior = EmptyBodyBehavior.Disallow )] UpdateDepositRequestBody updateDepositRequestBody, [FromRoute(Name = "Id")] Guid id)
+	public async Task<IActionResult> UpdateDeposit([FromBody(EmptyBodyBehavior = EmptyBodyBehavior.Allow)] UpdateDepositRequestBody updateDepositRequestBody, [FromRoute(Name = "Id")] Guid id)
 	{
 		using (_logger.BeginScope(new Dictionary<string, object>() {{"OperationId", updateDepositRequestBody.OperationId.GetValueOrDefault()}}))
 		{

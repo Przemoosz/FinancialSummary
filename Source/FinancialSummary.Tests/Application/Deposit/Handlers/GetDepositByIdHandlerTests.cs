@@ -14,13 +14,13 @@ using NSubstitute.ExceptionExtensions;
 [ApplicationLayerTests, Parallelizable]
 public class GetDepositByIdHandlerTests
 {
-    private IRepository<DepositEntity> _repository;
+    private IRepository<Guid, DepositEntity> _repository;
     private GetDepositByIdHandler _handler;
 
     [SetUp]
     public void SetUp()
     {
-        _repository = Substitute.For<IRepository<DepositEntity>>();
+        _repository = Substitute.For<IRepository<Guid, DepositEntity>>();
         _handler = new GetDepositByIdHandler(_repository);
     }
 
@@ -30,7 +30,7 @@ public class GetDepositByIdHandlerTests
         // Arrange
         var query = new GetDepositGetByIdQuery(Guid.NewGuid());
         var depositEntity = Any.Instance<DepositEntity>();
-        _repository.GetByIdAsync(query.Id, Arg.Any<CancellationToken>()).Returns(depositEntity);
+        _repository.GetByKeyAsync(query.Id, Arg.Any<CancellationToken>()).Returns(depositEntity);
 
         // Act
         var result = await _handler.Handle(query, CancellationToken.None);
@@ -45,7 +45,7 @@ public class GetDepositByIdHandlerTests
     {
         // Arrange
         var query = new GetDepositGetByIdQuery(Guid.NewGuid());
-        _repository.GetByIdAsync(query.Id, Arg.Any<CancellationToken>()).Returns((DepositEntity)null);
+        _repository.GetByKeyAsync(query.Id, Arg.Any<CancellationToken>()).Returns((DepositEntity)null);
 
         // Act
         var result = await _handler.Handle(query, CancellationToken.None);
@@ -63,7 +63,7 @@ public class GetDepositByIdHandlerTests
         // Arrange
         var query = new GetDepositGetByIdQuery(Guid.NewGuid());
         var errorMessage = "Database error";
-        _repository.GetByIdAsync(query.Id, Arg.Any<CancellationToken>()).Throws(new Exception(errorMessage));
+        _repository.GetByKeyAsync(query.Id, Arg.Any<CancellationToken>()).Throws(new Exception(errorMessage));
 
         // Act
         var result = await _handler.Handle(query, CancellationToken.None);

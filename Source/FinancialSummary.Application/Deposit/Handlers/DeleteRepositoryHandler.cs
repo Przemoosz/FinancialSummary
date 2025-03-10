@@ -11,10 +11,10 @@ using Result;
 
 internal class DeleteRepositoryHandler: IRequestHandler<DeleteDepositRequest, OperationResult>
 {
-	private readonly IRepository<DepositEntity> _repository;
+	private readonly IRepository<Guid, DepositEntity> _repository;
 	private readonly ILogger<DeleteRepositoryHandler> _logger;
 
-	public DeleteRepositoryHandler(IRepository<DepositEntity> repository, ILogger<DeleteRepositoryHandler> logger)
+	public DeleteRepositoryHandler(IRepository<Guid, DepositEntity> repository, ILogger<DeleteRepositoryHandler> logger)
 	{
 		_repository = repository;
 		_logger = logger;

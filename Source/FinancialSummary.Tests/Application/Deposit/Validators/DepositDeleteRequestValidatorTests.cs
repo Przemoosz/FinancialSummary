@@ -10,13 +10,13 @@ using NSubstitute;
 
 public class DepositDeleteRequestValidatorTests
 {
-	private IRepository<DepositEntity> _repository;
+	private IRepository<Guid, DepositEntity> _repository;
 	private DepositDeleteRequestValidator _validator;
 
 	[SetUp]
 	public void SetUp()
 	{
-		_repository = Substitute.For<IRepository<DepositEntity>>();
+		_repository = Substitute.For<IRepository<Guid, DepositEntity>>();
 		_validator = new DepositDeleteRequestValidator(_repository);
 	}
 

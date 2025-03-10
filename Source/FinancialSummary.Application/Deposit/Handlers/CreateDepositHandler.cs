@@ -11,11 +11,11 @@ using Result;
 
 internal sealed class CreateDepositHandler: IRequestHandler<CreateDepositRequest, OperationResult>
 {
-	private readonly IRepository<DepositEntity> _repository;
+	private readonly IRepository<Guid, DepositEntity> _repository;
 	private readonly IDepositEntityFactory _depositEntityFactory;
 	private readonly ILogger<CreateDepositRequest> _logger;
 
-	public CreateDepositHandler(IRepository<DepositEntity> repository, IDepositEntityFactory depositEntityFactory,
+	public CreateDepositHandler(IRepository<Guid, DepositEntity> repository, IDepositEntityFactory depositEntityFactory,
 		ILogger<CreateDepositRequest> logger)
 	{
 		_repository = repository;

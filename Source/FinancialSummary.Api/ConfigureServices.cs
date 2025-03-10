@@ -34,5 +34,10 @@ internal static class StartupConfiguration
 		{
 			options.UseNpgsql(configurationManager.GetConnectionString("FinancialSummaryDatabase"),  b => b.MigrationsAssembly("FinancialSummary.Api"));
 		});
+		
+		serviceCollection.AddDbContext<IBondTypesContext, BondTypesContext>(options =>
+		{
+			options.UseNpgsql(configurationManager.GetConnectionString("FinancialSummaryDatabase"),  b => b.MigrationsAssembly("FinancialSummary.Api"));
+		});
 	}
 }

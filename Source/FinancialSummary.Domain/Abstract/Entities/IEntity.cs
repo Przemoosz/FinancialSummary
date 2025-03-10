@@ -1,7 +1,6 @@
 namespace FinancialSummary.Domain.Abstract.Entities;
 
-public interface IEntity
+public interface IEntity<out TKey> : IEntityBase
 {
-	Guid Id { get; }
-	DateTime ModifyDate { get; }
+	TKey Id { get; }
 }

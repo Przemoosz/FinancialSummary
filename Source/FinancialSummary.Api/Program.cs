@@ -16,7 +16,11 @@ public class Program
         builder.Services.ConfigureMiddleware();
         builder.Services.ConfigureServices();
         builder.Services.ConfigureDatabase(builder.Configuration);
-        builder.Services.AddControllers();
+        builder.Services.AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+            });;
         WebApplication app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -43,5 +47,9 @@ public class Program
         await using DepositContext context = scope.ServiceProvider.GetRequiredService<DepositContext>();
 
         await context.Database.MigrateAsync();
+        
+        await using BondTypesContext bondTypesContext = scope.ServiceProvider.GetRequiredService<BondTypesContext>();
+
+        await bondTypesContext.Database.MigrateAsync();
     }
 }

@@ -9,7 +9,7 @@ internal static class EntityExtensions
 {
 	internal static TEntity UpdateProperty<TEntity, TProperty>(this TEntity entity,
 		Expression<Func<TEntity, TProperty>> expression, TProperty value)
-		where TEntity : IEntity 
+		where TEntity : IEntityBase
 		where TProperty : class
 	{
 		if (value is null)
@@ -23,7 +23,7 @@ internal static class EntityExtensions
 	
 	internal static TEntity UpdateProperty<TEntity, TProperty>(this TEntity entity,
 		Expression<Func<TEntity, TProperty>> expression, TProperty? value)
-		where TEntity : IEntity 
+		where TEntity : IEntityBase
 		where TProperty : struct
 	{
 		if (!value.HasValue)
