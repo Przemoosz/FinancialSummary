@@ -1,10 +1,6 @@
 namespace FinancialSummary.Api;
 
-using Application;
-using Domain.Entities;
-using Infrastructure.Abstract.DatabaseContext;
 using Infrastructure.DatabaseContext;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 public class Program
@@ -15,6 +11,7 @@ public class Program
 
         builder.Services.ConfigureMiddleware();
         builder.Services.ConfigureServices();
+        builder.Services.AddHttpClient();
         builder.Services.ConfigureDatabase(builder.Configuration);
         builder.Services.AddControllers()
             .AddJsonOptions(options =>

@@ -4,6 +4,7 @@ namespace FinancialSummary.Presentation.Api.V1.BondTypes.Controllers
 	using System.Net;
 	using Abstraction.Factories;
 	using Application.BondTypes.Requests;
+	using Application.Contracts.Providers.Cpi;
 	using Domain.Enums.BondTypes;
 	using MediatR;
 	using Microsoft.AspNetCore.Mvc;
