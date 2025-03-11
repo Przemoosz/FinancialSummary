@@ -2,7 +2,9 @@ namespace FinancialSummary.Infrastructure;
 
 using System.Diagnostics.CodeAnalysis;
 using Abstract.DatabaseContext;
+using Application.Contracts.Providers.Cpi;
 using Application.Contracts.Repository;
+using Cpi;
 using DatabaseContext;
 using Domain.Abstract.Entities;
 using Domain.Entities;
@@ -18,6 +20,9 @@ public static class InfrastructureInstaller
 {
 	public static void InstallInfrastructure(this IServiceCollection serviceCollection)
 	{
+		serviceCollection.AddMemoryCache();
+		serviceCollection.AddSingleton<ICpiProvider, CpiProvider>();
+		serviceCollection.AddSingleton<ICpiClient, CpiClient>();
 		serviceCollection.AddScoped<IRepository<Guid, DepositEntity>, DepositRepository>();
 		serviceCollection.AddScoped<IRepository<string, TwoYearsFloatingInterestBondType>, BondTypesRepository<TwoYearsFloatingInterestBondType>>();
 		serviceCollection.AddScoped<IRepository<string, OneYearFloatingInterestBondType>, BondTypesRepository<OneYearFloatingInterestBondType>>();
