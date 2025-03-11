@@ -16,13 +16,11 @@ namespace FinancialSummary.Presentation.Api.V1.BondTypes.Controllers
 	{
 		private readonly IMediator _mediator;
 		private readonly IProblemDetailsFactory _problemDetailsFactory;
-		private readonly ICpiProvider _cpiProvider;
 
-		public BondTypeController(IMediator mediator, IProblemDetailsFactory problemDetailsFactory, ICpiProvider cpiProvider)
+		public BondTypeController(IMediator mediator, IProblemDetailsFactory problemDetailsFactory)
 		{
 			_mediator = mediator;
 			_problemDetailsFactory = problemDetailsFactory;
-			_cpiProvider = cpiProvider;
 		}
 		
 		[HttpPut]
@@ -38,13 +36,6 @@ namespace FinancialSummary.Presentation.Api.V1.BondTypes.Controllers
 					return StatusCode((int)failed.StatusCode, problemDetails);
 				},
 				success => StatusCode((int) HttpStatusCode.Created, success.Context));
-		}
-
-		[HttpGet("/cpi")]
-		public async Task<IActionResult> GetCPI()
-		{
-			var result = await _cpiProvider.GetCpiAsync(1, 2024);
-			return Ok(result);
 		}
 	}
 }
