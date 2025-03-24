@@ -8,6 +8,8 @@ namespace FinancialSummary.Domain.Entities
 		public string Id { get; init; }
 		public double Value { get; init; }
 
+		public CpiEntity()
+		{ }
 		internal CpiEntity(string name, double value)
 		{
 			Id = name;

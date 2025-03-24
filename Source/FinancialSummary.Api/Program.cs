@@ -27,7 +27,7 @@ public class Program
             app.UseSwaggerUI();
             // await ApplyMigrations(app);
         }
-        // await ApplyMigrations(app);
+        await ApplyMigrations(app);
         app.UseHttpsRedirection();
 
         app.MapControllers();
