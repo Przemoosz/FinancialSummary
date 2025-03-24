@@ -40,13 +40,9 @@ public class Program
     private static async Task ApplyMigrations(WebApplication app)
     {
         using IServiceScope scope = app.Services.CreateScope();
-
-        await using DepositContext context = scope.ServiceProvider.GetRequiredService<DepositContext>();
-
-        await context.Database.MigrateAsync();
         
-        await using BondTypesContext bondTypesContext = scope.ServiceProvider.GetRequiredService<BondTypesContext>();
+        await using DatabaseContext databaseContext = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
 
-        await bondTypesContext.Database.MigrateAsync();
+        await databaseContext.Database.MigrateAsync();
     }
 }

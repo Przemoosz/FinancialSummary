@@ -7,10 +7,10 @@ namespace FinancialSummary.Infrastructure.Repository
 
 	internal sealed class BondTypesRepository<TBondType>: IRepository<string, TBondType> where TBondType: BondTypeBase, IEntity<string>
 	{
-		private readonly IBondTypesContext _context;
+		private readonly IDatabaseContext _context;
 		private readonly DbSet<TBondType> _dbSet;
 
-		public BondTypesRepository(IBondTypesContext context)
+		public BondTypesRepository(IDatabaseContext context)
 		{
 			_context = context;
 			_dbSet = context.Set<TBondType>();
@@ -31,9 +31,18 @@ namespace FinancialSummary.Infrastructure.Repository
 			return _dbSet.AsAsyncEnumerable();
 		}
 
-		public async Task AddAsync(TBondType depositEntity, CancellationToken cancellationToken)
+		public async Task AddAsync(TBondType entity, CancellationToken cancellationToken)
 		{
-			await _dbSet.AddAsync(depositEntity, cancellationToken);
+			await _dbSet.AddAsync(entity, cancellationToken);
+			await _context.SaveChangesAsync(cancellationToken);
+		}
+
+		public async Task AddManyAsync(IEnumerable<TBondType> entities, CancellationToken cancellationToken)
+		{
+			foreach (TBondType entity in entities)
+			{
+				await _dbSet.AddAsync(entity, cancellationToken);
+			}
 			await _context.SaveChangesAsync(cancellationToken);
 		}
 

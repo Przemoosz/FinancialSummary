@@ -31,7 +31,7 @@ public sealed record DepositEntity: IEntity<Guid>
 	[Required]
 	public DateTime FinishDate { get; init; }
 	
-	public DepositEntity(string name, decimal cash, decimal interestRate, int capitalizationPerYear, DateTime startDate, DateTime finishDate)
+	internal DepositEntity(string name, decimal cash, decimal interestRate, int capitalizationPerYear, DateTime startDate, DateTime finishDate)
 	{
 		Id =  Guid.NewGuid();
 		Name = name;

@@ -9,7 +9,8 @@ public interface IRepository<in TKey, TEntity> where TEntity: IEntity<TKey>
 	
 	IAsyncEnumerable<TEntity> GetAll(CancellationToken cancellationToken);
 	
-	Task AddAsync(TEntity depositEntity, CancellationToken cancellationToken);
+	Task AddAsync(TEntity entity, CancellationToken cancellationToken);
+	Task AddManyAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken);
 	
 	Task DeleteAsync(TKey key, CancellationToken cancellationToken);
 	Task UpdateAsync(CancellationToken cancellationToken);
