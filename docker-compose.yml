@@ -21,3 +21,13 @@
       - "5432:5432"
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
+  financialsummary.web:
+    image: financialsummary.web
+    container_name: FinancialSummaryWeb
+    build:
+      context: ./Frontend/FinancialSummaryWeb 
+      dockerfile: ./dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - financialsummary.api
