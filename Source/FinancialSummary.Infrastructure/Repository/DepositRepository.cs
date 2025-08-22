@@ -7,48 +7,57 @@ using Domain.Entities.Deposit;
 using Microsoft.EntityFrameworkCore;
 
 [ExcludeFromCodeCoverage]
-internal class DepositRepository: IRepository<Guid, DepositEntity>
+internal sealed class DepositRepository: IRepository<Guid, DepositEntity>
 {
-	private readonly IDepositContext _depositContext;
+	private readonly IDatabaseContext _databaseContext;
 
-	public DepositRepository(IDepositContext depositContext)
+	public DepositRepository(IDatabaseContext databaseContext)
 	{
-		_depositContext = depositContext;
+		_databaseContext = databaseContext;
 	}
 	
 	public Task<DepositEntity> GetByKeyAsync(Guid key, CancellationToken cancellationToken)
 	{
-		return _depositContext.Deposits.FirstOrDefaultAsync(s => s.Id.Equals(key), cancellationToken);
+		return _databaseContext.Deposits.FirstOrDefaultAsync(s => s.Id.Equals(key), cancellationToken);
 	}
 
 	public Task<bool> ExistsAsync(Guid key, CancellationToken cancellationToken)
 	{
-		return _depositContext.Deposits.AnyAsync(x => x.Id.Equals(key), cancellationToken);
+		return _databaseContext.Deposits.AnyAsync(x => x.Id.Equals(key), cancellationToken);
 	}
 
 	public IAsyncEnumerable<DepositEntity> GetAll(CancellationToken cancellationToken)
 	{
-		return _depositContext.Deposits.AsAsyncEnumerable();
+		return _databaseContext.Deposits.AsAsyncEnumerable();
 	}
 
-	public async Task AddAsync(DepositEntity depositEntity, CancellationToken cancellationToken)
+	public async Task AddAsync(DepositEntity entity, CancellationToken cancellationToken)
 	{
-		await _depositContext.Deposits.AddAsync(depositEntity, cancellationToken);
-		await _depositContext.SaveChangesAsync(cancellationToken);
+		await _databaseContext.Deposits.AddAsync(entity, cancellationToken);
+		await _databaseContext.SaveChangesAsync(cancellationToken);
+	}
+
+	public async Task AddManyAsync(IEnumerable<DepositEntity> entities, CancellationToken cancellationToken)
+	{
+		foreach (DepositEntity entity in entities)
+		{
+			await _databaseContext.Deposits.AddAsync(entity, cancellationToken);
+		}
+		await _databaseContext.SaveChangesAsync(cancellationToken);
 	}
 
 	public Task DeleteAsync(Guid key, CancellationToken cancellationToken)
 	{
-		return _depositContext.Deposits.Where(s => s.Id.Equals(key)).ExecuteDeleteAsync(cancellationToken);
+		return _databaseContext.Deposits.Where(s => s.Id.Equals(key)).ExecuteDeleteAsync(cancellationToken);
 	}
 	
 	public async Task UpdateAsync(CancellationToken cancellationToken)
 	{
-		await _depositContext.SaveChangesAsync(cancellationToken);
+		await _databaseContext.SaveChangesAsync(cancellationToken);
 	}
 	
 	public ValueTask DisposeAsync()
 	{
-		return _depositContext.DisposeAsync();
+		return _databaseContext.DisposeAsync();
 	}
 }

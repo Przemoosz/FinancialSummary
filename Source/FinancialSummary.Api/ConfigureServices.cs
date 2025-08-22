@@ -30,12 +30,7 @@ internal static class StartupConfiguration
 	public static void ConfigureDatabase(this IServiceCollection serviceCollection,
 		ConfigurationManager configurationManager)
 	{
-		serviceCollection.AddDbContext<IDepositContext, DepositContext>(options =>
-		{
-			options.UseNpgsql(configurationManager.GetConnectionString("FinancialSummaryDatabase"),  b => b.MigrationsAssembly("FinancialSummary.Api"));
-		});
-		
-		serviceCollection.AddDbContext<IBondTypesContext, BondTypesContext>(options =>
+		serviceCollection.AddDbContext<IDatabaseContext, DatabaseContext>(options =>
 		{
 			options.UseNpgsql(configurationManager.GetConnectionString("FinancialSummaryDatabase"),  b => b.MigrationsAssembly("FinancialSummary.Api"));
 		});
