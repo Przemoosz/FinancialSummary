@@ -1,5 +1,6 @@
 namespace FinancialSummary.Domain.Factories
 {
+	using Abstract.Factories;
 	using Entities;
 
 	internal sealed class CpiEntityFactory: ICpiEntityFactory
@@ -36,11 +37,5 @@ namespace FinancialSummary.Domain.Factories
 			
 			return $"{endMonth}_{endYearString}";
 		}
-	}
-
-	public interface ICpiEntityFactory
-	{
-		CpiEntity Create(uint month, uint year, double value);
-		CpiEntity[] CreateForYear(uint year, double[] values);
 	}
 }
