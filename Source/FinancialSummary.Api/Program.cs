@@ -20,6 +20,15 @@ public class Program
             });;
         WebApplication app = builder.Build();
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowFrontend",
+                policy => policy
+                    .WithOrigins("http://localhost:3000")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
+        });
+        
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
@@ -27,9 +36,11 @@ public class Program
             app.UseSwaggerUI();
             // await ApplyMigrations(app);
         }
-        await ApplyMigrations(app);
+        // await ApplyMigrations(app);
         app.UseHttpsRedirection();
 
+        // app.UseCors("AllowFrontend");
+        
         app.MapControllers();
         
         app.UseAuthorization();
