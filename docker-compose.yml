@@ -22,7 +22,7 @@
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
   financialsummary.web:
-    image: financialsummary.web
+    image: financialsummary.web:latest
     container_name: FinancialSummaryWeb
     build:
       context: ./Frontend/FinancialSummaryWeb 

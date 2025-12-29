@@ -18,8 +18,9 @@ public class Program
             {
                 options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
             });;
-        WebApplication app = builder.Build();
 
+
+        
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("AllowFrontend",
@@ -28,6 +29,9 @@ public class Program
                     .AllowAnyHeader()
                     .AllowAnyMethod());
         });
+        WebApplication app = builder.Build();
+
+
         
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())

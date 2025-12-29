@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
 
-function GetDataFrombackend(){
+function GetDataFrombackend() {
   var result = fetch('http://localhost:8080/Deposit/V1/c37eba8e-d899-4def-951a-11461eb2edc3').then(response => console.log(response));
-
+  console.log(result);
   
 }
 
@@ -13,12 +12,15 @@ function GetDataFrombackend(){
 function App() {
   const [count, setCount] = useState(0)
 
+  GetDataFrombackend();
   return (
     <>
-    <div>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-    </div>
+      <p>He {count}</p>
+    <button onClick={() => setCount}>Btn</button>
+    
     </>
+
+
   )
 }
 
